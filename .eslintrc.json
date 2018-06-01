@@ -9,10 +9,13 @@
     "browser": true
   },
   "rules": {
-    "import/no-unresolved": [2]
+    "import/no-unresolved": [2],
+    "semi": [2, "always"],
+    "comma-dangle": 0
   },
   "globals": {
-    "phaser": true
+    "phaser": true,
+    "FBInstant": true
   },
   "settings": {
     "import/core-modules": ["phaser", "pixi", "p2"]
