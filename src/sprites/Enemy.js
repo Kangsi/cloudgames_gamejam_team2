@@ -16,7 +16,11 @@ export default class Enemy extends Sprite {
     this.y += this.speed;
 
     if (this.y >= 950) {
-      this.destroy();
+      this.kill();
     }
+  }
+
+  kill () {
+    this.destroy();
   }
 }
