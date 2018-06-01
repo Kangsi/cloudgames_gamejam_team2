@@ -2,7 +2,6 @@ import 'pixi';
 import 'p2';
 import Phaser from 'phaser';
 
-import BootState from './states/Boot';
 import SplashState from './states/Splash';
 import GameState from './states/Game';
 import Facebook from './services/Facebook';
@@ -12,7 +11,7 @@ import config from './config';
 class Game extends Phaser.Game {
   constructor (config) {
     super(config);
-console.log(config)
+
     this.state.add('Splash', SplashState, false);
     this.state.add('Game', GameState, false);
 

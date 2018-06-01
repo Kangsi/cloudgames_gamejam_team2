@@ -15,7 +15,8 @@
   },
   "globals": {
     "phaser": true,
-    "FBInstant": true
+    "FBInstant": true,
+    "game": true
   },
   "settings": {
     "import/core-modules": ["phaser", "pixi", "p2"]
