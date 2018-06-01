@@ -1,30 +1,21 @@
 import Phaser from 'phaser';
 import Sprite from '../services/Sprite';
 
-export default class Cannon extends Phaser.Group {
+export default class Bullet extends Sprite {
   constructor (x, y, rotation, speed) {
-    super(game);
-
+    super({
+      asset: 'mushroom'
+    });
     this.speed = speed;
     this.x = x;
     this.y = y;
     this.rotation = rotation;
 
-    this.buildBullet();
-  }
+    game.addBullet.dispatch(this);
+    game.add.existing(this);
 
-  buildBullet () {
-    this.bullet = new Sprite({
-      asset: 'mushroom',
-    });
-
-    this.add(this.bullet);
-
-    game.physics.arcade.enable(this.bullet, Phaser.Physics.ARCADE);
-    this.bullet.body.setCircle(45);
-
-    this.bullet.body.onCollide = new Phaser.Signal();
-    this.bullet.body.onCollide.add(this.destroyBullet, this);
+    game.physics.arcade.enable(this, Phaser.Physics.ARCADE);
+    this.body.setCircle(30);
   }
 
   update () {
@@ -35,12 +26,10 @@ export default class Cannon extends Phaser.Group {
     }
   }
 
-  render () {
-    game.debug.body(this.bullet);
-  }
+  destroyBullet () {
+    game.removeBullet.dispatch(this);
 
-  destroyBullet() {
-    console.log('destroy')
+    console.log('destroy');
     this.destroy();
   }
 }
