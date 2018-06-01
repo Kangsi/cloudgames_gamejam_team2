@@ -1,7 +1,6 @@
 import Phaser from 'phaser';
 import WebFont from 'webfontloader';
 import config from '../config';
-import Facebook from '../services/Facebook';
 
 export default class extends Phaser.State {
   init () {
@@ -19,11 +18,6 @@ export default class extends Phaser.State {
         active: this.fontsLoaded
       });
     }
-    console.log("test")
-
-    this.load.onFileComplete.add(this.fileComplete, this);
-    //this.load.onLoadComplete.add(this.loadComplete, this);
-    console.log("test")
 
     let text = this.add.text(this.world.centerX, this.world.centerY, 'loading fonts', { font: '16px Arial', fill: '#dddddd', align: 'center' });
     text.anchor.setTo(0.5, 0.5);
@@ -43,9 +37,5 @@ export default class extends Phaser.State {
 
   fontsLoaded () {
     this.fontsReady = true;
-  }
-
-  fileComplete (progress, cacheKey, success, totalLoaded, totalFiles) {
-    Facebook.setLoadingProgress(progress);
   }
 }

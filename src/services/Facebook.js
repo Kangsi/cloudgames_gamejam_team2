@@ -16,11 +16,13 @@ export default class Facebook {
     }
   }
 
-  static startGameAsync (bgm, game, callback, scope) {
+  static startGameAsync (callback, scope) {
     if (('FBInstant' in window)) {
       FBInstant.startGameAsync().then(() => {
-
+          callback.call(scope);
       });
+    } else {
+      callback.call(scope);
     }
   }
 }
