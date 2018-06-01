@@ -18,16 +18,13 @@ export default class Cannon extends Phaser.Group {
     this.buildHitBox();
 
     game.fireButton.add(() => {
-      if (this.onCooldown) {
-        return;
-      }
       this.shoot();
     });
   }
 
   buildCannon () {
     this.cannon = new Sprite({
-      asset: 'mushroom',
+      asset: 'cannon_1',
       inputEnabled: true,
     });
 
@@ -50,10 +47,17 @@ export default class Cannon extends Phaser.Group {
     });
 
     this.hitbox.events.onInputUp.add(() => {
-      this.rotateCannon();
+      console.log('test');
+      this.shoot();
     });
 
     this.add(this.hitbox);
+  }
+
+  update () {
+    if (game.input.activePointer.isDown && this.hitbox.input.checkPointerOver(game.input.activePointer)) {
+      this.rotateCannon();
+    }
   }
 
   rotateCannon () {
@@ -62,16 +66,19 @@ export default class Cannon extends Phaser.Group {
   }
 
   shoot () {
+    if (this.onCooldown) {
+      return;
+    }
     const bullet = new Bullet(this.cannon.position.x + this.x, this.cannon.position.y + this.y, this.cannon.rotation, this.speed);
     this.setCooldownTimer();
   }
 
-  setCooldownTimer() {
-    this.setCooldown(true)
+  setCooldownTimer () {
+    this.setCooldown(true);
     game.time.events.add(this.cooldownDuration, this.setCooldown, this, false);
   }
 
-  setCooldown(value) {
+  setCooldown (value) {
     this.onCooldown = value;
   }
 }

@@ -4,7 +4,7 @@ import Overlay from '../services/Overlay';
 
 export default class Enemy extends Sprite {
   constructor (x = 0, y = 0) {
-    super({asset: 'mushroom'});
+    super({asset: 'slime_enemy'});
 
     this.x = x;
     this.y = y;

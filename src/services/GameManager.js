@@ -43,8 +43,10 @@ export default class Cannon extends Phaser.Group {
     var index = this.enemies.indexOf(enemy);
 
     if (index > -1) {
-      this.enemies.splice(index);
+      this.enemies.splice(index, 1);
     }
+
+    console.log(this.enemies.length)
   }
 
   update () {
@@ -57,5 +59,6 @@ export default class Cannon extends Phaser.Group {
 
   onCollision(bullet, enemy) {
     bullet.destroyBullet()
+    enemy.kill();
   }
 }

@@ -4,10 +4,11 @@ import Cannon from '../sprites/Cannon';
 import FireButton from '../sprites/FireButton';
 import Enemy from '../sprites/Enemy';
 import GameManager from '../services/GameManager';
+import EnemyGenerate from '../services/EnemyGenerate';
 
 export default class extends Phaser.State {
   init () {
-
+    game.add.sprite(0,0, 'background')
   }
   preload () {
     game.fireButton = new Phaser.Signal();
@@ -20,9 +21,9 @@ export default class extends Phaser.State {
 
   create () {
     this.gameManager = new GameManager();
-
+    this.enemyGenerate = new EnemyGenerate(10);
     this.cannon = new Cannon(game.width / 2, game.height * 0.75);
-    this.fireButton = new FireButton(game.width * 0.75, game.height * 0.75);
+    this.fireButton = new FireButton(game.width * 0.75, game.height * 0.9);
     this.enemy = new Enemy(25, 25);
     this.game.add.existing(this.enemy);
   }
