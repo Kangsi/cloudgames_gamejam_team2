@@ -9,20 +9,23 @@ export default class Enemy extends Sprite {
     this.x = x;
     this.y = y;
 
-    game.physics.arcade.enable(this, Phaser.Physics.ARCADE);
-    this.body.setCircle(30);
-
-    this.speed = 4;
-
     game.addEnemy.dispatch(this);
+
+    game.physics.arcade.enable(this, Phaser.Physics.ARCADE);
+    this.body.setCircle(30)
+    this.speed = 4;
   }
 
   update () {
     this.y += this.speed;
 
     if (this.y >= 950) {
-      game.removeEnemy.dispatch(this)
-      this.destroy();
+      this.kill();
     }
+  }
+
+  kill () {
+    game.removeEnemy.dispatch(this);
+    this.destroy();
   }
 }
