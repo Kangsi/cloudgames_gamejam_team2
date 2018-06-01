@@ -1,13 +1,14 @@
 export default class Facebook {
   static initializeAsync (Game, config) {
-    FBInstant.initializeAsync().then(function () {
-      if (('FBInstant' in window)) {
-
+    if (('FBInstant' in window)) {
+      FBInstant.initializeAsync().then(function () {
         window.game = new Game(config);
         print(`FB Instant SDK Version: ${Facebook.getSDKVersion}`);
         this.game.ID = Facebook.playerGetID;
-      }
-    });
+      });
+    } else {
+      window.game = new Game(config);
+    }
   }
 
   static setLoadingProgress (progress) {
@@ -19,7 +20,7 @@ export default class Facebook {
   static startGameAsync (callback, scope) {
     if (('FBInstant' in window)) {
       FBInstant.startGameAsync().then(() => {
-          callback.call(scope);
+        callback.call(scope);
       });
     } else {
       callback.call(scope);
