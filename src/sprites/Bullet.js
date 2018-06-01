@@ -19,6 +19,12 @@ export default class Cannon extends Phaser.Group {
     });
 
     this.add(this.bullet);
+
+    game.physics.arcade.enable(this.bullet, Phaser.Physics.ARCADE);
+    this.bullet.body.setCircle(45);
+
+    this.bullet.body.onCollide = new Phaser.Signal();
+    this.bullet.body.onCollide.add(this.destroyBullet, this);
   }
 
   update () {
@@ -27,5 +33,14 @@ export default class Cannon extends Phaser.Group {
     if (this.y <= 0) {
       this.destroy();
     }
+  }
+
+  render () {
+    game.debug.body(this.bullet);
+  }
+
+  destroyBullet() {
+    console.log('destroy')
+    this.destroy();
   }
 }
