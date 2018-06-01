@@ -12,7 +12,7 @@ export default class Cannon extends Phaser.Group {
     this.onCooldown = false;
     this.cooldownDuration = 500;
 
-    this.speed = 10;
+    this.speed = 50;
 
     this.buildCannon();
     this.buildHitBox();
@@ -25,11 +25,6 @@ export default class Cannon extends Phaser.Group {
   buildCannon () {
     this.cannon = new Sprite({
       asset: 'cannon_1',
-      inputEnabled: true,
-    });
-
-    this.cannon.events.onInputUp.add(() => {
-      console.log('cannon pressed');
     });
 
     this.add(this.cannon);
@@ -47,7 +42,6 @@ export default class Cannon extends Phaser.Group {
     });
 
     this.hitbox.events.onInputUp.add(() => {
-      console.log('test');
       this.shoot();
     });
 

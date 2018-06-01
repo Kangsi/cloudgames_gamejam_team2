@@ -7,7 +7,7 @@ export default class EnemyGenerate extends Phaser.Group {
     this.enemies = [];
     this.amount = amount;
     this.x = game.width;
-    this.y = -1000;
+    this.y = -5000;
     this.spawnEnemies(amount);
 
     game.removeEnemy.add((enemy) => {
@@ -33,6 +33,10 @@ export default class EnemyGenerate extends Phaser.Group {
 
     if (index !== -1) {
       this.enemies.splice(index, 1);
+    }
+
+    if (this.enemies.length === 0) {
+      this.spawnEnemies();
     }
   }
 }
