@@ -7,6 +7,9 @@ export default class extends Phaser.State {
   }
 
   preload () {
+    game.stage.backgroundColor = "#4488AA";
+    game.physics.startSystem(Phaser.Physics.ARCADE);
+
     this.load.onFileComplete.add(this.fileComplete, this);
     this.load.onLoadComplete.add(this.loadComplete, this);
 
@@ -18,6 +21,7 @@ export default class extends Phaser.State {
     //
     // load your assets
     //
+    
     this.load.image('mushroom', 'assets/images/mushroom2.png');
   }
 

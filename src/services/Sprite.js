@@ -1,7 +1,7 @@
 import Phaser from 'phaser';
 
 export default class Sprite extends Phaser.Sprite {
-  constructor ({asset, x, y, frame, anchorX = 0, anchorY = 0, inputEnabled = false}) {
+  constructor ({asset, x, y, frame, anchorX = 0.5, anchorY = 0.5, inputEnabled = false}) {
     super(game, x, y, asset, frame);
 
     this.game = game;
