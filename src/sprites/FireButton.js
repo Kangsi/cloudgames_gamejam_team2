@@ -1,4 +1,4 @@
-import Phaser from 'phaser';
+mport Phaser from 'phaser';
 import Sprite from '../services/Sprite';
 import Overlay from '../services/Overlay';
 
