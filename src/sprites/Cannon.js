@@ -123,10 +123,9 @@ export default class Cannon extends Phaser.Group {
       return;
     }
 
-
     if (this.bullets) {
-      this.cannon.animations.play('shoot', 30, false);
-      game.time.events.add(300, () => {
+      this.cannon.animations.play('shoot', 60, false);
+      game.time.events.add(150, () => {
         const bullet = new Bullet(this.cannon.position.x + this.x, this.cannon.position.y + this.y, this.cannon.rotation, this.speed, this.power);
         game.bullets.add(bullet);
         this.bullets--;

@@ -23,7 +23,9 @@ export default class Enemy extends Sprite {
   }
 
   update () {
-
+    if (this.hp <= 0) {
+      return;
+    }
 
     this.y += this.speed;
     // if (this.lives === 0) {
@@ -32,7 +34,7 @@ export default class Enemy extends Sprite {
     // this.y += Math.floor((Math.random() * this.maxSpeed) + this.minSpeed);
 
     if (this.y >= 950) {
-      //game.camera.shake(0.02, 100);
+      // game.camera.shake(0.02, 100);
       this.kill();
     }
   }
