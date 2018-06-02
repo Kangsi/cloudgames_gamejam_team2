@@ -29,7 +29,6 @@ export default class Bullet extends Sprite {
   destroyBullet () {
     game.removeBullet.dispatch(this);
 
-    console.log('destroy');
     this.destroy();
   }
 }

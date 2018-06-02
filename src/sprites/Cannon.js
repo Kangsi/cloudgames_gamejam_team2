@@ -13,7 +13,7 @@ export default class Cannon extends Phaser.Group {
     this.y = y;
 
     this.onCooldown = false;
-    this.cooldownDuration = 500;
+    this.cooldownDuration = 400;
 
     this.speed = 50;
     this.bullets = 10;
@@ -91,16 +91,15 @@ export default class Cannon extends Phaser.Group {
     }
   }
 
-
   rotateCannon () {
     let position = new Phaser.Point(this.cannon.x + this.x, this.cannon.y + this.y);
     this.cannon.rotation = Phaser.Math.angleBetweenPoints(position, game.input.activePointer) + 1.5708;
   }
 
   shoot () {
-    if (this.onCooldown) {
-      return;
-    }
+    // if (this.onCooldown) {
+    //   return;
+    // }
     if (this.bullets) {
       const bullet = new Bullet(this.cannon.position.x + this.x, this.cannon.position.y + this.y, this.cannon.rotation, this.speed);
       game.bullets.add(bullet);

@@ -3,14 +3,13 @@ import Sprite from '../services/Sprite';
 import Text from '../services/Text';
 
 export default class Enemy extends Sprite {
-  constructor (x, y, speed, health) {
-    super({asset: 'slime_enemy'});
+  constructor (x, y, speed, health, name) {
+    super({asset: name});
 
     this.x = x;
     this.y = y;
     this.maxHp = health;
     this.hp = this.maxHp;
-
     game.addEnemy.dispatch(this);
 
     this.speed = speed;

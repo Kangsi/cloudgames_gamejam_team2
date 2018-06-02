@@ -1,7 +1,6 @@
 /* globals __DEV__ */
 import Phaser from 'phaser';
 import Cannon from '../sprites/Cannon';
-import Enemy from '../sprites/Enemy';
 import GameManager from '../services/GameManager';
 import EnemyGenerate from '../services/EnemyGenerate';
 import Bullets from '../sprites/Bullets';
@@ -24,7 +23,7 @@ export default class extends Phaser.State {
   create () {
     this.gameManager = new GameManager();
     this.game.enemies = new Enemies();
-    this.enemyGenerate = new EnemyGenerate(10);
+    this.enemyGenerate = new EnemyGenerate();
     this.game.bullets = new Bullets();
     this.cannon = new Cannon(game.width / 2, game.height * 0.75);
   }

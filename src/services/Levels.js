@@ -1,3 +1,5 @@
+import Enemy from '../sprites/Enemy';
+
 export default class Levels {
   constructor () {
     this.minSpeed = 1;
@@ -7,26 +9,27 @@ export default class Levels {
 
     this.amount = 10;
     this.level = 1;
-    // game.spawnEnemies.dispatch(this);
-
-    //this.addLevel();
-    // this.completedLevel();
-    // this.completedBoss();
+    this.addLevel();
   }
 
   addLevel () {
-    this.minSpeed *= 1.1;
-    this.maxSpeed *= 1.1;
+    this.minSpeed *= 1.05;
+    this.maxSpeed *= 1.05;
 
     this.level += 1;
-    console.log(this.level)
-    // this.health *= 1.2;
-
-    // this.amount *= 1.3;
+    console.log('level up boiii! you are now at: ' + this.level);
   }
 
-  completedLevel () {
-    console.log('Completed your level!');
+  addBossLevel () {
+    const randomX = Math.random() * game.width;
+    const randomY = Math.random() * -1000;
+    var bossSpeed = this.maxSpeed / 2;
+    var bossHealth = this.health * 5;
+
+    const boss = new Enemy(randomX, randomY, bossSpeed, bossHealth, 'demon_enemy');
+
+    game.enemies.add(boss);
+    this.enemies.push(boss);
   }
 
   completedBoss () {

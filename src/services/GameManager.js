@@ -1,9 +1,8 @@
 import Phaser from 'phaser';
 
 export default class Cannon extends Phaser.Group {
-  constructor (level) {
+  constructor () {
     super(game);
-    this.level = level;
 
     this.bullets = [];
     this.enemies = [];
@@ -60,6 +59,6 @@ export default class Cannon extends Phaser.Group {
   onCollision(bullet, enemy) {
     enemy.doDamage(bullet.power);
 
-    bullet.destroyBullet()
+    bullet.destroyBullet();
   }
 }
