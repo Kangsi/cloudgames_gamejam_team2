@@ -1,8 +1,10 @@
 import Phaser from 'phaser';
 
 export default class Cannon extends Phaser.Group {
-  constructor () {
+  constructor (level) {
     super(game);
+    this.level = level;
+
     this.bullets = [];
     this.enemies = [];
 

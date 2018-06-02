@@ -14,12 +14,22 @@ export default class EnemyGenerate extends Phaser.Group {
     game.removeEnemy.add((enemy) => {
       this.removeEnemy(enemy);
     });
+    game.spawnEnemies.add((level) => {
+      this.spawnEnemies(level);
+    });
   }
 
-  spawnEnemies () {
-    for (let i = 0; i < this.amount; i++) {
+  spawnEnemies (level) {
+    for (let i = 0; i < level.amount; i++) {
+      //random spawn place
       const randomX = Math.random() * this.x;
       const randomY = Math.random() * this.y;
+      //pseudo random enemy speed
+      const randomMinSpeed = Math.random() * level.minSpeed;
+      const randomMaxSpeed = Math.random() * level.maxSpeed;
+
+      const enemyHealth = level.health;
+
       const tempEnemy = new Enemy(randomX, randomY);
       game.add.existing(tempEnemy);
       this.enemies.push(tempEnemy);

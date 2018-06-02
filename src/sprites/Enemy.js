@@ -3,15 +3,18 @@ import Sprite from '../services/Sprite';
 import Text from '../services/Text';
 
 export default class Enemy extends Sprite {
-  constructor (x = 0, y = 0) {
+  constructor (x, y, minSpeed, maxSpeed, health) {
     super({asset: 'slime_enemy'});
 
     this.x = x;
     this.y = y;
 
-    this.lives = 3;
-
     game.addEnemy.dispatch(this);
+
+    this.minSpeed = minSpeed;
+    this.maxSpeed = maxSpeed;
+
+    this.health = health;
 
     game.physics.arcade.enable(this, Phaser.Physics.ARCADE);
     this.body.setSize(130, 170);
@@ -19,13 +22,9 @@ export default class Enemy extends Sprite {
   }
 
   update () {
-    this.y += this.speed;
-    if (this.lives === 0) {
-      this.gameOver();
-    }
+    this.y += Math.floor((Math.random() * this.maxSpeed) + this.minSpeed);
     if (this.y >= 950) {
-      this.lives--;
-      console.log(this.lives);
+      this.deathCheck();
       this.kill();
     }
   }
@@ -35,15 +34,13 @@ export default class Enemy extends Sprite {
     this.destroy();
   }
 
-  gameOver () {
-    this.deathMessage = new Text({
-      text: 'Your cannon has exploded!',
-      x: 0,
-      y: 500,
-      backgroundColor: 'white',
-      fontSize: 80,
-      fontStyle: 'bold'
-    });
-    this.add(this.deathMessage);
+  deathCheck () {
+    let count = 3;
+    console.log("Counter: " + count);
+    if (count <= 0) {
+      count--;
+    } else {
+      this.gameOver();
+    }
   }
 }
