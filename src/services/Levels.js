@@ -11,18 +11,18 @@ export default class Levels {
     this.level = 1;
 
     this.levelInfo = game.cache.getJSON('level');
-    console.log(this.levelInfo);
     this.levelInfoIndex = 0;
     this.currentLevelInfo = this.levelInfo[this.levelInfoIndex];
-    this.addLevel();
+   // this.addLevel();
   }
 
   addLevel () {
+    this.level += 1;
+
     this.getCorrectLevelInfo();
     // this.minSpeed *= 1.05;
     // this.maxSpeed *= 1.05;
 
-    this.level += 1;
     console.log('level up boiii! you are now at: ' + this.level);
   }
 

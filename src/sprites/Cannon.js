@@ -15,6 +15,20 @@ export default class Cannon extends Phaser.Group {
     this.onCooldown = false;
     this.cooldownDuration = 300;
 
+    this.gameOver = false;
+
+    game.gameOver.add(() => {
+      this.gameOver = true;
+    });
+
+    game.resetGame.add(() => {
+      this.gameOver = false;
+      this.changeTexture(1);
+    });
+
+    game.updateCannon.add((value) => {
+      this.changeTexture(value);
+    });
 
     this.power = 5;
     this.speed = 50;
@@ -23,7 +37,6 @@ export default class Cannon extends Phaser.Group {
     this.spacebar = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
 
     this.buildCannon();
-    this.buildAmmo(this.bullets);
     this.buildHitBox();
 
     game.addPowerUpToCannon.add((type, value) => {
@@ -71,24 +84,6 @@ export default class Cannon extends Phaser.Group {
     this.add(this.character);
   }
 
-  buildAmmo (bullets) {
-    this.ammo = new Sprite({
-      // asset: 'cannon_1',
-      asset: 'mushroom',
-      x: -300,
-      y: 200
-    });
-    this.amount = new Text({
-      text: '*' + bullets,
-      x: -250,
-      y: 160,
-      fontSize: 60,
-      align: 'left'
-    });
-    this.add(this.amount);
-    this.add(this.ammo);
-  }
-
   buildHitBox () {
     this.hitbox = new Overlay({
       alpha: 0,
@@ -107,7 +102,20 @@ export default class Cannon extends Phaser.Group {
     this.add(this.hitbox);
   }
 
+  changeTexture (value) {
+    if (!game.cache.checkImageKey(`character_${value}`)) {
+      return;
+    }
+    console.log(value);
+    this.cannonBase.loadTexture(`cannon_base${value}`);
+    this.character.loadTexture(`character_${value}`);
+  }
+
   update () {
+    if (this.gameOver) {
+      return;
+    }
+
     if (game.input.activePointer.isDown && this.hitbox.input.checkPointerOver(game.input.activePointer)) {
       this.rotateCannon();
     }
@@ -122,31 +130,17 @@ export default class Cannon extends Phaser.Group {
   }
 
   shoot () {
-    if (this.onCooldown) {
+    if (this.onCooldown || this.gameOver) {
       return;
     }
 
-    if (true) {
-      this.setCooldownTimer();
+    this.setCooldownTimer();
 
-      this.cannon.animations.play('shoot', 60, false);
-      game.time.events.add(150, () => {
-        const bullet = new Bullet(this.cannon.position.x + this.x, this.cannon.position.y + this.y, this.cannon.rotation, this.speed, this.power);
-        game.bullets.add(bullet);
-        this.bullets--;
-        this.updateAmmoText();
-      });
-    }
-  }
-
-  reload (amount) {
-    this.bullets += amount;
-
-    this.updateAmmoText();
-  }
-
-  updateAmmoText () {
-    this.amount.text = `*${this.bullets}`;
+    this.cannon.animations.play('shoot', 60, false);
+    game.time.events.add(150, () => {
+      const bullet = new Bullet(this.cannon.position.x + this.x, this.cannon.position.y + this.y, this.cannon.rotation, this.speed, this.power);
+      game.bullets.add(bullet);
+    });
   }
 
   setCooldownTimer () {
@@ -161,8 +155,6 @@ export default class Cannon extends Phaser.Group {
   updatePowerUp (type, value) {
     switch (type) {
       case 'power': this.power += value;
-        break;
-      case 'ammo': this.reload(value);
         break;
     }
   }

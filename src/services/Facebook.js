@@ -30,4 +30,26 @@ export default class Facebook {
   static checkIfLocalHost () {
     return window.location.href.includes('http://localhost') || window.location.href.includes('http://192');
   }
+
+  static getRewardedVideo(callback, scope) {
+    if (('FBInstant' in window) && !Facebook.checkIfLocalHost()) {
+      let ad = null;
+      FBInstant.getRewardedVideoAsync(
+        '956053367886439_956768177814958',
+      ).then(function (rewardedVideo) {
+        // Load the Ad asynchronously
+        ad = rewardedVideo;
+        return ad.loadAsync();
+      }).then(function () {
+        return ad.showAsync();
+      }).then(function () {
+        callback.call(scope);
+      }).catch(function (e) {
+        callback.call(scope);
+        console.log(e);
+      });
+    } else {
+      callback.call(scope);
+    }
+  }
 }

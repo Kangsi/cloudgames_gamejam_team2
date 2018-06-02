@@ -1,5 +1,7 @@
 import Phaser from 'phaser';
 
+const maxHp = 3;
+
 export default class Cannon extends Phaser.Group {
   constructor () {
     super(game);
@@ -7,6 +9,8 @@ export default class Cannon extends Phaser.Group {
     this.bullets = [];
     this.enemies = [];
     this.powerUps = [];
+
+    this.playerHp = maxHp;
 
     game.addBullet.add((bullet) => {
       this.addBullet(bullet);
@@ -30,6 +34,14 @@ export default class Cannon extends Phaser.Group {
 
     game.removePowerUp.add((powerUp) => {
       this.removePowerUp(powerUp);
+    });
+
+    game.doDamage.add((value) => {
+      this.doDamage(value);
+    });
+
+    game.resetGame.add(() => {
+      this.resetHp();
     });
   }
 
@@ -81,11 +93,25 @@ export default class Cannon extends Phaser.Group {
     }
   }
 
+  doDamage (value) {
+    this.playerHp -= value;
+    if (this.playerHp <= 0) {
+      // TODO game over
+      game.gameOver.dispatch();
+      return;
+    }
+
+    game.updateCannon.dispatch(maxHp - this.playerHp + 1);
+  }
+
+  resetHp () {
+    this.playerHp = maxHp;
+  }
+
   onCollisionEnemy (bullet, enemy) {
     enemy.doDamage(bullet.power);
 
     bullet.destroyBullet();
-
   }
 
   onCollisionPowerUp (bullet, powerUp) {

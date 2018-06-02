@@ -11,7 +11,19 @@ export default class EnemyGenerate extends Phaser.Group {
     this.x = game.width;
     this.y = -1000;
 
-    this.spawnEnemies('slime_enemy');
+    this.spawnEnemies();
+
+    this.gameOver = false;
+
+    game.gameOver.add(() => {
+      this.gameOver = true;
+    });
+
+    game.resetGame.add(() => {
+      this.gameOver = false;
+console.log("reset Game")
+      this.createNewWave();
+    });
 
     game.removeEnemy.add((enemy) => {
       this.removeEnemy(enemy);
@@ -21,7 +33,7 @@ export default class EnemyGenerate extends Phaser.Group {
     });
   }
 
-  spawnEnemies (name) {
+  spawnEnemies () {
     const info = this.levels.currentLevelInfo;
     for (let i = 0; i < info.amount; i++) {
       // random spawn place
@@ -73,12 +85,22 @@ export default class EnemyGenerate extends Phaser.Group {
     }
 
     if (this.enemies.length === 0) {
-      if (this.levels.isBossLevel()) {
-        this.spawnBoss();
+      if (this.gameOver) {
+        return;
       }
+
       this.levels.addLevel();
 
-      this.spawnEnemies();
+      this.createNewWave();
     }
+  }
+
+  createNewWave () {console.log("create wave")
+
+    if (this.levels.isBossLevel()) {
+      this.spawnBoss();
+    }
+
+    this.spawnEnemies();
   }
 }

@@ -16,10 +16,20 @@
             margin: 0;
             padding: 0;
         }
+        @font-face {
+            font-family: 'BubbleGum';
+            src: url('assets//bubblegum.ttf') format('truetype')
+        }
+        .fontPreload1 {
+            font-family: BubbleGum;
+            position:absolute;
+            left:-100px;
+        }
     </style>
 </head>
 
 <body>
+    <div class="fontPreload1">.</div>
 
     <div id="content"></div>
     <!-- uncomment the line bellow for cordova feature -->

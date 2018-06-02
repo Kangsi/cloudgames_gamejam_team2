@@ -16,6 +16,10 @@ export default class Bullet extends Sprite {
     this.body.setCircle(32, 32, 32);
 
     this.rotation = rotation;
+
+    game.destroyAll.add(() => {
+      this.destroyBullet();
+    })
   }
 
   update () {

@@ -3,9 +3,9 @@ import Phaser from 'phaser';
 export default class Text extends Phaser.Text {
   constructor ({
     text = '', x = 0, y = 0, anchorX = 0.5, anchorY = 0.5, fontSize = 20,
-    fontName = 'MaryTodd', fontWeight = 'normal', color = '#323232',
+    fontName = 'BubbleGum', fontWeight = 'normal', color = '#ffffff',
     visible = true, align = 'center', boundsAlignH = 'center', boundsAlignV = 'middle',
-    stroke = '#524a42', strokeThickness = 0, inputEnabled = false,
+    stroke = '#524a42', strokeThickness = 4, inputEnabled = false,
   }) {
     super(game, x, y, text);
 
