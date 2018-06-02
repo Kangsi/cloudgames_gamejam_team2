@@ -1,6 +1,7 @@
 import Phaser from 'phaser';
 import {centerGameObjects} from '../utils';
 import Facebook from '../services/Facebook';
+import Enemy from '../sprites/Enemy';
 
 export default class extends Phaser.State {
   init () {
@@ -52,6 +53,11 @@ export default class extends Phaser.State {
 
     this.load.image('button_audio', 'assets/images/button_audio.png');
     this.load.image('button_mute', 'assets/images/button_mute.png');
+    this.load.audio('home', 'assets/audio/Menu/menuMusic.mp3');
+    // slime sounds suckah
+    this.load.audio('slime_move', 'assets/audio/Enemy/Slimes/slimeMovement.mp3');
+    this.load.audio('slime_hit', 'assets/audio/Enemy/Slimes/slimeHit.mp3');
+    this.load.audio('slime_death', 'assets/audio/Enemy/Slimes/slimeDeath.mp3');
   }
 
   fileComplete (progress, cacheKey, success, totalLoaded, totalFiles) {

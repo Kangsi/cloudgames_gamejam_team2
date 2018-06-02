@@ -12,6 +12,7 @@ export default class ButtonStart extends Sprite {
     this.buildText();
     this.events.onInputUp.add(() => {
       callback.call(scope, 'Game');
+      game.sound.removeByKey('home');
     });
   }
 

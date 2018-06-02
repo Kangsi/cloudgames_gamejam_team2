@@ -20,6 +20,8 @@ export default class extends Phaser.State {
     game.add.existing(background);
 
     this.buttonMute = new ButtonMute(game.width / 2, game.height * 0.85, this.switchGameState, this);
+    game.sound.play('home', 100, true);
+
     this.game.add.existing(this.buttonMute);
 
     this.buttonStart = new ButtonStart(game.width / 2, game.height * 0.7, this.switchGameState, this);
@@ -48,6 +50,5 @@ export default class extends Phaser.State {
   }
 
   render () {
-
   }
 }

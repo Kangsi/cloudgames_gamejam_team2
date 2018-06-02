@@ -21,7 +21,7 @@ export default class EnemyGenerate extends Phaser.Group {
 
     game.resetGame.add(() => {
       this.gameOver = false;
-console.log("reset Game")
+      console.log('reset Game');
       this.createNewWave();
     });
 
@@ -42,7 +42,7 @@ console.log("reset Game")
       // pseudo random enemy speed
 
       const enemy = this.getRandomEnemy(info.minions);
-
+      this.sound = enemy.sound;
       const randomSpeed = Math.random() * (enemy.initMaxSpeed - enemy.initMinSpeed) + enemy.initMinSpeed;
 
       const tempEnemy = new Enemy(randomX, randomY, randomSpeed, enemy.initHealth, enemy.asset);
@@ -50,6 +50,7 @@ console.log("reset Game")
       game.enemies.add(tempEnemy);
       this.enemies.push(tempEnemy);
     }
+    game.sound.play(this.sound, 100, true);
   }
 
   spawnBoss () {
@@ -85,6 +86,8 @@ console.log("reset Game")
     }
 
     if (this.enemies.length === 0) {
+      game.sound.removeByKey(this.sound);
+
       if (this.gameOver) {
         return;
       }
@@ -95,7 +98,8 @@ console.log("reset Game")
     }
   }
 
-  createNewWave () {console.log("create wave")
+  createNewWave () {
+    console.log('create wave');
 
     if (this.levels.isBossLevel()) {
       this.spawnBoss();

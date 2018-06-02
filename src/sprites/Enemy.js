@@ -59,7 +59,6 @@ export default class Enemy extends Sprite {
 
   kill () {
     game.removeEnemy.dispatch(this);
-
     this.tween = game.add.tween(this).to({ alpha: 0 }, 1000, null, true);
     this.tween.onComplete.add(() => {
       this.destroy();
