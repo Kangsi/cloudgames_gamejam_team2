@@ -45,7 +45,7 @@ export default class Levels {
 
   getCorrectLevelInfo () {
     if (!this.levelInfo[this.levelInfoIndex + 1]) {
-      console.warn("no more levels");
+      console.warn('no more levels');
       return;
     }
 
@@ -55,11 +55,11 @@ export default class Levels {
     }
   }
 
-  isBossLevel() {
+  isBossLevel () {
     if (!this.levelInfo[this.levelInfoIndex + 1]) {
-      console.warn("no more levels");
+      console.warn('no more levels');
       return false;
     }
-    return this.levelInfo[this.levelInfoIndex + 1].level - 1 === this.level
+    return this.levelInfo[this.levelInfoIndex + 1].level - 1 === this.level;
   }
 }

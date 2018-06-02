@@ -4,13 +4,16 @@ import Text from '../services/Text';
 
 export default class Enemy extends Sprite {
   constructor (x, y, speed, health, name) {
-    super({asset: name});
+    super({asset: name, frame: 0});
+
 
     this.x = x;
     this.y = y;
     this.maxHp = health;
     this.hp = this.maxHp;
     game.addEnemy.dispatch(this);
+    this.animations.add('walk');
+    this.animations.play('walk', 30, true);
 
     this.speed = speed;
     this.health = health;
@@ -31,7 +34,7 @@ export default class Enemy extends Sprite {
     // this.y += Math.floor((Math.random() * this.maxSpeed) + this.minSpeed);
 
     if (this.y >= 950) {
-      game.camera.shake(0.02, 100);
+      // game.camera.shake(0.02, 100);
       this.kill();
     }
   }

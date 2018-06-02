@@ -11,13 +11,13 @@
     },
     "minions": {
       "demon1": {
-        "asset": "slime_enemy",
+        "asset": "demon2",
         "initMinSpeed": 1,
         "initMaxSpeed": 1.5,
         "initHealth": 5
       },
       "demon2": {
-        "asset": "slime_enemy",
+        "asset": "demon2",
         "initMinSpeed": 2,
         "initMaxSpeed": 2.5,
         "initHealth": 10

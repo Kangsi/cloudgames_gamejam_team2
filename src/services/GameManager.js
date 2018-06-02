@@ -6,6 +6,7 @@ export default class Cannon extends Phaser.Group {
 
     this.bullets = [];
     this.enemies = [];
+    this.powerUps = [];
 
     game.addBullet.add((bullet) => {
       this.addBullet(bullet);
@@ -22,6 +23,14 @@ export default class Cannon extends Phaser.Group {
     game.removeEnemy.add((bullet) => {
       this.removeEnemy(bullet);
     });
+
+    game.addPowerUp.add((powerUp) => {
+      this.addPowerUp(powerUp);
+    });
+
+    game.removePowerUp.add((powerUp) => {
+      this.removePowerUp(powerUp);
+    });
   }
 
   addBullet (bullet) {
@@ -32,7 +41,7 @@ export default class Cannon extends Phaser.Group {
     var index = this.bullets.indexOf(bullet);
 
     if (index > -1) {
-      this.bullets.splice(index);
+      this.bullets.splice(index, 1);
     }
   }
 
@@ -48,16 +57,39 @@ export default class Cannon extends Phaser.Group {
     }
   }
 
+  addPowerUp (powerUp) {
+    this.powerUps.push(powerUp);
+  }
+
+  removePowerUp (powerUp) {
+    var index = this.powerUps.indexOf(powerUp);
+
+    if (index > -1) {
+      this.powerUps.splice(index, 1);
+    }
+  }
+
   update () {
     for (let i = 0; i < this.bullets.length; i += 1) {
       for (let j = 0; j < this.enemies.length; j += 1) {
-        game.physics.arcade.overlap(this.bullets[i], this.enemies[j], this.onCollision, null, this);
+        game.physics.arcade.overlap(this.bullets[i], this.enemies[j], this.onCollisionEnemy, null, this);
+      }
+
+      for (let k = 0; k < this.powerUps.length; k += 1) {
+        game.physics.arcade.overlap(this.bullets[i], this.powerUps[k], this.onCollisionPowerUp, null, this);
       }
     }
   }
 
-  onCollision(bullet, enemy) {
+  onCollisionEnemy (bullet, enemy) {
     enemy.doDamage(bullet.power);
+
+    bullet.destroyBullet();
+
+  }
+
+  onCollisionPowerUp (bullet, powerUp) {
+    powerUp.kill();
 
     bullet.destroyBullet();
   }
