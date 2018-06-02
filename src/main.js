@@ -11,7 +11,7 @@ import config from './config';
 class Game extends Phaser.Game {
   constructor (config) {
     super(config);
-
+    console.log('test');
     this.state.add('Splash', SplashState, false);
     this.state.add('Game', GameState, false);
 
@@ -24,29 +24,29 @@ class Game extends Phaser.Game {
 
 Facebook.initializeAsync(Game, config);
 
-if (window.cordova) {
-  var app = {
-    initialize: function () {
-      document.addEventListener(
-        'deviceready',
-        this.onDeviceReady.bind(this),
-        false
-      );
-    },
-
-    // deviceready Event Handler
-    //
-    onDeviceReady: function () {
-      this.receivedEvent('deviceready');
-
-      // When the device is ready, start Phaser Boot state.
-      window.game.state.start('Boot');
-    },
-
-    receivedEvent: function (id) {
-      console.log('Received Event: ' + id);
-    }
-  };
-
-  app.initialize();
-}
+// if (window.cordova) {
+//   var app = {
+//     initialize: function () {
+//       document.addEventListener(
+//         'deviceready',
+//         this.onDeviceReady.bind(this),
+//         false
+//       );
+//     },
+//
+//     // deviceready Event Handler
+//     //
+//     onDeviceReady: function () {
+//       this.receivedEvent('deviceready');
+//
+//       // When the device is ready, start Phaser Boot state.
+//       window.game.state.start('Boot');
+//     },
+//
+//     receivedEvent: function (id) {
+//       console.log('Received Event: ' + id);
+//     }
+//   };
+//
+//   app.initialize();
+// }
