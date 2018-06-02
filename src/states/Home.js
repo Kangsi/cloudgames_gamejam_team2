@@ -15,6 +15,7 @@ export default class extends Phaser.State {
       anchorX: 0,
       anchorY: 0
     });
+
     background.scale.setTo(2 / 3);
 
     game.add.existing(background);

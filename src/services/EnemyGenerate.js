@@ -100,11 +100,12 @@ export default class EnemyGenerate extends Phaser.Group {
 
   createNewWave () {
     console.log('create wave');
+    game.time.events.add(this.levels.waveDelay, () => {
+      if (this.levels.isBossLevel()) {
+        this.spawnBoss();
+      }
 
-    if (this.levels.isBossLevel()) {
-      this.spawnBoss();
-    }
-
-    this.spawnEnemies();
+      this.spawnEnemies();
+    });
   }
 }

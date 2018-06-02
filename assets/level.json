@@ -3,6 +3,8 @@
     "id": 0,
     "level": 1,
     "amount": 10,
+    "bg1": "background1",
+    "bg2": "wall1",
     "boss": {
       "asset": "slime_boss",
       "sound": "slime_move",
@@ -31,6 +33,8 @@
     "id": 1,
     "level": 3,
     "amount": 10,
+    "bg1": "background2",
+    "bg2": "wall2",
     "boss": {
       "asset": "demon_enemy",
       "sound": "slime_move",

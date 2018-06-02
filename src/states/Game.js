@@ -13,8 +13,8 @@ import PowerUpSpawner from '../services/PowerUpSpawner';
 
 export default class extends Phaser.State {
   init () {
-    const background = game.add.sprite(-50, -50, 'background');
-    background.scale.setTo(1.1 * 2 / 3);
+    this.background = game.add.sprite(-50, -50, 'background1');
+    this.background.scale.setTo(1.1 * 2 / 3);
   }
 
   preload () {
@@ -35,6 +35,7 @@ export default class extends Phaser.State {
     game.restart = new Phaser.Signal();
     game.toHome = new Phaser.Signal();
     game.updateScore = new Phaser.Signal();
+    game.changeBackground = new Phaser.Signal();
   }
 
   create () {
@@ -46,13 +47,17 @@ export default class extends Phaser.State {
       this.toHome();
     });
 
+    game.changeBackground.add((bg1, bg2) => {
+      this.setNewBackground(bg1, bg2);
+    });
+
     this.gameManager = new GameManager();
     this.game.enemies = new Enemies();
     this.enemyGenerate = new EnemyGenerate();
     this.game.bullets = new Bullets();
-    const wall = game.add.sprite(-50, game.height + 50, 'wall');
-    wall.anchor.setTo(0, 1);
-    wall.scale.setTo(1.1 * 2 / 3);
+    this.wall = game.add.sprite(-50, game.height + 50, 'wall1');
+    this.wall.anchor.setTo(0, 1);
+    this.wall.scale.setTo(1.1 * 2 / 3);
     this.cannon = new Cannon(game.width / 2, game.height * 0.75);
     this.game.powerUps = new PowerUps();
     this.powerUpSpawner = new PowerUpSpawner();
@@ -76,6 +81,11 @@ export default class extends Phaser.State {
 
   restart () {
     this.state.start('Game');
+  }
+
+  setNewBackground (bg1, bg2) {
+    this.background.loadTexture(bg1);
+    this.wall.loadTexture(bg2);
   }
 
   toHome () {
