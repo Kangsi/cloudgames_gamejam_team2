@@ -4,7 +4,7 @@ import Text from '../services/Text';
 
 export default class Enemy extends Sprite {
   constructor (x, y, speed, health, name) {
-    super({asset: name, frame: 0});
+    super({asset: name, frame: 0, anchorY: 1});
 
 
     this.x = x;

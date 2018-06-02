@@ -15,6 +15,7 @@ export default class Cannon extends Phaser.Group {
     this.onCooldown = false;
     this.cooldownDuration = 300;
 
+
     this.power = 5;
     this.speed = 50;
     this.bullets = 10;
@@ -46,23 +47,27 @@ export default class Cannon extends Phaser.Group {
   buildCannon () {
     this.cannonBase = new Sprite({
       asset: 'cannon_base1',
+      x: -34,
+      y: 40,
 
     });
 
-    this.add(this.cannonBase);
     this.cannon = new Sprite({
       // asset: 'cannon_1',
       asset: 'cannon',
     });
-    console.log(this.cannon.width);
+
+    this.cannon.scale.setTo(1.4);
     this.cannon.anchor.setTo(0.5, 1);
     this.cannon.animations.add('shoot');
     this.add(this.cannon);
+    this.add(this.cannonBase);
 
     this.character = new Sprite({
       asset: 'character_1',
+      y: 40,
     });
-    
+
     this.add(this.character);
   }
 
@@ -121,7 +126,9 @@ export default class Cannon extends Phaser.Group {
       return;
     }
 
-    if (this.bullets > 0) {
+    if (true) {
+      this.setCooldownTimer();
+
       this.cannon.animations.play('shoot', 60, false);
       game.time.events.add(150, () => {
         const bullet = new Bullet(this.cannon.position.x + this.x, this.cannon.position.y + this.y, this.cannon.rotation, this.speed, this.power);
