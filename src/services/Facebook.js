@@ -3,7 +3,6 @@ export default class Facebook {
     if (('FBInstant' in window)) {
       FBInstant.initializeAsync().then(function () {
         window.game = new Game(config);
-        print(`FB Instant SDK Version: ${Facebook.getSDKVersion}`);
         this.game.ID = Facebook.playerGetID;
       });
     } else {
