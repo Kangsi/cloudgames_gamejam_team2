@@ -57,7 +57,8 @@ export default class Cannon extends Phaser.Group {
   }
 
   onCollision(bullet, enemy) {
+    enemy.doDamage(bullet.power);
+
     bullet.destroyBullet()
-    enemy.kill();
   }
 }

@@ -10,7 +10,7 @@ export default class Bullet extends Sprite {
     this.x = x;
     this.y = y;
     this.rotation = rotation;
-
+    this.power = 5;
     game.addBullet.dispatch(this);
     game.add.existing(this);
 

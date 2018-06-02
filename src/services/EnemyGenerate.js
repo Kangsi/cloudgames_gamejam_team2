@@ -21,12 +21,13 @@ export default class EnemyGenerate extends Phaser.Group {
       const randomX = Math.random() * this.x;
       const randomY = Math.random() * this.y;
       const tempEnemy = new Enemy(randomX, randomY);
-      game.add.existing(tempEnemy);
+      this.add(tempEnemy);
       this.enemies.push(tempEnemy);
     }
   }
 
   update () {
+
   }
 
   removeEnemy (enemy) {

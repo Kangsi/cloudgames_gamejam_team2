@@ -28,6 +28,6 @@ export default class Facebook {
   }
 
   static checkIfLocalHost () {
-    return window.location.href.includes('http://localhost');
+    return window.location.href.includes('http://localhost') || window.location.href.includes('http://192');
   }
 }
