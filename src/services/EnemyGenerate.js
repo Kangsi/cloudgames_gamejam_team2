@@ -1,32 +1,68 @@
 import Phaser from 'phaser';
 import Enemy from '../sprites/Enemy';
-import Cannon from '../sprites/Cannon';
+import Levels from '../services/Levels';
 
 export default class EnemyGenerate extends Phaser.Group {
-  constructor (amount) {
+  constructor () {
     super(game);
+    this.levels = new Levels();
+
     this.enemies = [];
-    this.amount = amount;
     this.x = game.width;
-    this.y = -5000;
-    this.spawnEnemies(amount);
+    this.y = -1000;
+
+    this.spawnEnemies('slime_enemy');
 
     game.removeEnemy.add((enemy) => {
       this.removeEnemy(enemy);
     });
+    game.spawnEnemies.add((level) => {
+      this.spawnEnemies(level);
+    });
   }
 
-  spawnEnemies () {
-    for (let i = 0; i < this.amount; i++) {
+  spawnEnemies (name) {
+    const info = this.levels.currentLevelInfo;
+    for (let i = 0; i < info.amount; i++) {
+      // random spawn place
       const randomX = Math.random() * this.x;
       const randomY = Math.random() * this.y;
-      const tempEnemy = new Enemy(randomX, randomY);
-      game.add.existing(tempEnemy);
+      // pseudo random enemy speed
+
+      const enemy = this.getRandomEnemy(info.minions);
+
+      const randomSpeed = Math.random() * (enemy.initMaxSpeed - enemy.initMinSpeed) + enemy.initMinSpeed;
+
+      const tempEnemy = new Enemy(randomX, randomY, randomSpeed, enemy.initHealth, enemy.asset);
+
+      game.enemies.add(tempEnemy);
       this.enemies.push(tempEnemy);
     }
   }
 
+  spawnBoss () {
+    const enemy = this.levels.currentLevelInfo.boss;
+    // random spawn place
+    const randomX = game.width / 2;
+    const randomY = Math.random() * this.y;
+    // pseudo random enemy speed
+
+    const randomSpeed = Math.random() * (enemy.initMaxSpeed - enemy.initMinSpeed) + enemy.initMinSpeed;
+
+    const tempEnemy = new Enemy(randomX, randomY, randomSpeed, enemy.initHealth, enemy.asset);
+
+    game.enemies.add(tempEnemy);
+    this.enemies.push(tempEnemy);
+  }
+
+  getRandomEnemy (minions) {
+    const keys = Object.keys(minions);
+    const randomIndex = Math.floor(Math.random() * keys.length);
+    return minions[keys[randomIndex]];
+  }
+
   update () {
+
   }
 
   removeEnemy (enemy) {
@@ -37,6 +73,11 @@ export default class EnemyGenerate extends Phaser.Group {
     }
 
     if (this.enemies.length === 0) {
+      if (this.levels.isBossLevel()) {
+        this.spawnBoss();
+      }
+      this.levels.addLevel();
+
       this.spawnEnemies();
     }
   }

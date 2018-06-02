@@ -1,0 +1,13 @@
+import Phaser from 'phaser';
+
+export default class Bullets extends Phaser.Group {
+  constructor () {
+    super(game);
+  }
+
+  update () {
+    this.children.forEach((child) => {
+      child.update();
+    });
+  }
+}
