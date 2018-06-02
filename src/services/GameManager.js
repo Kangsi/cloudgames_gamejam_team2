@@ -33,7 +33,7 @@ export default class Cannon extends Phaser.Group {
     var index = this.bullets.indexOf(bullet);
 
     if (index > -1) {
-      this.bullets.splice(index);
+      this.bullets.splice(index, 1);
     }
   }
 

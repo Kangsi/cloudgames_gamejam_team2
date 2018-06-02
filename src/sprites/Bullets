@@ -4,4 +4,12 @@ export default class Bullets extends Phaser.Group {
   constructor() {
     super(game)
   }
+
+  update() {
+    console.log(this.children.length);
+
+    this.children.forEach((child) => {
+      child.update();
+    })
+  }
 }
