@@ -25,7 +25,7 @@ export default class Cannon extends Phaser.Group {
     this.buildAmmo(this.bullets);
     this.buildHitBox();
 
-    game.addPowerUp.add((type, value) => {
+    game.addPowerUpToCannon.add((type, value) => {
       this.updatePowerUp(type, value);
     });
   }
@@ -92,7 +92,7 @@ export default class Cannon extends Phaser.Group {
       this.rotateCannon();
     }
     if (this.spacebar.justPressed()) {
-      this.reload(this.bullets + 5);
+      this.reload(5);
     }
   }
 
@@ -109,16 +109,18 @@ export default class Cannon extends Phaser.Group {
       const bullet = new Bullet(this.cannon.position.x + this.x, this.cannon.position.y + this.y, this.cannon.rotation, this.speed, this.power);
       game.bullets.add(bullet);
       this.bullets--;
-      this.reload(this.bullets);
+      this.updateAmmoText();
     }
     this.setCooldownTimer();
   }
 
   reload (amount) {
-    this.ammo.destroy();
-    this.amount.destroy();
-    this.bullets = amount;
-    this.buildAmmo(this.bullets);
+    this.bullets += amount;
+    this.updateAmmoText();
+  }
+
+  updateAmmoText () {
+    this.amount.text = `*${this.bullets}`;
   }
 
   setCooldownTimer () {
@@ -133,6 +135,8 @@ export default class Cannon extends Phaser.Group {
   updatePowerUp (type, value) {
     switch (type) {
       case 'power': this.power += value;
+        break;
+      case 'ammo': this.reload(value);
         break;
     }
   }

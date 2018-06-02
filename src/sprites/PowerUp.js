@@ -1,15 +1,16 @@
 import Sprite from '../services/Sprite';
 import Phaser from 'phaser';
 export default class PowerUp extends Sprite {
-  constructor (type = 'power', value = 3) {
+  constructor ({asset, type = 'power', value = 3}) {
     super({
-      asset: 'crate_spritesheet',
+      asset: asset,
       inputEnabled: true,
       frame: 0,
     });
 
     this.animations.add('walk');
-    this.animations.play('walk', 1, true);
+    this.animations.play('walk', 30, true);
+    game.physics.arcade.enable(this, Phaser.Physics.ARCADE);
 
     this.type = type;
     this.value = value;
@@ -17,20 +18,16 @@ export default class PowerUp extends Sprite {
     this.y = 100;
     this.initY = Math.random() * 200;
 
-    this.doTween();
+    game.addPowerUp.dispatch(this);
 
     this.events.onInputUp.add(() => {
-      game.addPowerUp.dispatch(this.type, this.value);
-      this.destroy();
+      game.addPowerUpToCannon.dispatch(this.type, this.value);
+      this.kill();
     });
   }
 
-  doTween () {
-    // game.add.tween(this).to({ y: this.initY + 100}, 1000, Phaser.Easing.Sinusoidal.InOut,
-    // true, 0, -1, true);
-  }
-
-  update () {
-    //  this.x += 2;
+  kill() {
+    this.destroy();
+    game.removePowerUp.dispatch(this)
   }
 }

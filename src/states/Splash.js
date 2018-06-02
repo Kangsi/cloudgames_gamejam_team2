@@ -28,7 +28,7 @@ export default class extends Phaser.State {
     this.load.image('demon_enemy', 'assets/images/demon_enemy.png');
     this.load.image('mushroom', 'assets/images/mushroom2.png');
     this.load.image('projectile', 'assets/images/projectile.png');
-    this.load.spritesheet('crate_spritesheet', 'assets/images/crate_spritesheet.png', 288, 128, 12);
+    this.load.spritesheet('crate', 'assets/images/crate_spritesheet.png', 281, 128, 12);
   }
 
   fileComplete (progress, cacheKey, success, totalLoaded, totalFiles) {

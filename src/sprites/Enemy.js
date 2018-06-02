@@ -21,9 +21,7 @@ export default class Enemy extends Sprite {
   }
 
   update () {
-    if (this.hp <= 0) {
-      return;
-    }
+
 
     this.y += this.speed;
     // if (this.lives === 0) {
