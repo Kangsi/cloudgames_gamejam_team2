@@ -1,6 +1,7 @@
 export default class Facebook {
   static initializeAsync (Game, config) {
-    if (('FBInstant' in window)) {
+    console.log(window.location.href);
+    if (('FBInstant' in window) && !Facebook.checkIfLocalHost()) {
       FBInstant.initializeAsync().then(function () {
         window.game = new Game(config);
         this.game.ID = Facebook.playerGetID;
@@ -11,18 +12,22 @@ export default class Facebook {
   }
 
   static setLoadingProgress (progress) {
-    if (('FBInstant' in window)) {
+    if (('FBInstant' in window) && !Facebook.checkIfLocalHost()) {
       FBInstant.setLoadingProgress(progress);
     }
   }
 
   static startGameAsync (callback, scope) {
-    if (('FBInstant' in window)) {
+    if (('FBInstant' in window) && !Facebook.checkIfLocalHost()) {
       FBInstant.startGameAsync().then(() => {
         callback.call(scope);
       });
     } else {
       callback.call(scope);
     }
+  }
+
+  static checkIfLocalHost () {
+    return window.location.href.includes('http://localhost');
   }
 }
