@@ -10,7 +10,7 @@ import Home from './states/Home';
 import config from './config';
 
 class Game extends Phaser.Game {
-  constructor (config) {
+  constructor () {
     super(config);
     console.log('test');
     this.state.add('Splash', SplashState, false);

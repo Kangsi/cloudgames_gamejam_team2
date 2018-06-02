@@ -8,6 +8,9 @@ export default class Ammo extends PowerUp {
       value: 10,
     });
 
+    this.animations.add('walk');
+    this.animations.play('walk', 30, true);
+
     this.x = game.width + 100;
   }
 

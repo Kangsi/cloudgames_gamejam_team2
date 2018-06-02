@@ -42,9 +42,9 @@ export default class extends Phaser.State {
   }
 
   render () {
-    for (let i = 0; i < this.gameManager.bullets.length; i += 1) {
-      game.debug.body(this.gameManager.bullets[i]);
-    }
+    // for (let i = 0; i < this.gameManager.bullets.length; i += 1) {
+    //   game.debug.body(this.gameManager.bullets[i]);
+    // }
     for (let i = 0; i < this.gameManager.powerUps.length; i += 1) {
       game.debug.body(this.gameManager.powerUps[i]);
     }

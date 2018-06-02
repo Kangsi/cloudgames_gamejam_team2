@@ -44,11 +44,28 @@ export default class Cannon extends Phaser.Group {
   }
 
   buildCannon () {
+    this.cannonBase = new Sprite({
+      asset: 'test',
+
+    });
+
+    //this.add(this.cannonBase);
     this.cannon = new Sprite({
       // asset: 'cannon_1',
-      asset: 'cannon_2',
+      asset: 'cannon',
     });
+    console.log(this.cannon.width);
+    this.cannon.anchor.setTo(0.5, 1);
+    this.cannon.animations.add('shoot');
     this.add(this.cannon);
+
+    this.character = new Sprite({
+      asset: 'character_1',
+    });
+
+    this.character.scale.setTo(0.3, 0.2);
+
+    // this.add(this.character);
   }
 
   buildAmmo (bullets) {
@@ -105,11 +122,16 @@ export default class Cannon extends Phaser.Group {
     if (this.onCooldown) {
       return;
     }
+
+
     if (this.bullets) {
-      const bullet = new Bullet(this.cannon.position.x + this.x, this.cannon.position.y + this.y, this.cannon.rotation, this.speed, this.power);
-      game.bullets.add(bullet);
-      this.bullets--;
-      this.updateAmmoText();
+      this.cannon.animations.play('shoot', 30, false);
+      game.time.events.add(300, () => {
+        const bullet = new Bullet(this.cannon.position.x + this.x, this.cannon.position.y + this.y, this.cannon.rotation, this.speed, this.power);
+        game.bullets.add(bullet);
+        this.bullets--;
+        this.updateAmmoText();
+      });
     }
     this.setCooldownTimer();
   }

@@ -8,8 +8,6 @@ export default class PowerUp extends Sprite {
       frame: 0,
     });
 
-    this.animations.add('walk');
-    this.animations.play('walk', 30, true);
     game.physics.arcade.enable(this, Phaser.Physics.ARCADE);
 
     this.type = type;
@@ -26,8 +24,8 @@ export default class PowerUp extends Sprite {
     });
   }
 
-  kill() {
+  kill () {
     this.destroy();
-    game.removePowerUp.dispatch(this)
+    game.removePowerUp.dispatch(this);
   }
 }

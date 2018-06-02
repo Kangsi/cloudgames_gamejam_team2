@@ -4,7 +4,7 @@ import Text from '../services/Text';
 
 export default class Enemy extends Sprite {
   constructor (x, y, speed, health) {
-    super({asset: 'slime_enemy'});
+    super({asset: 'demon2', frame: 0});
 
     this.x = x;
     this.y = y;
@@ -12,6 +12,8 @@ export default class Enemy extends Sprite {
     this.hp = this.maxHp;
 
     game.addEnemy.dispatch(this);
+    this.animations.add('walk');
+    this.animations.play('walk', 30, true);
 
     this.speed = speed;
     this.health = health;
