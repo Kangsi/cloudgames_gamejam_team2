@@ -3,19 +3,24 @@ import Sprite from '../services/Sprite';
 import Text from '../services/Text';
 
 export default class Enemy extends Sprite {
-  constructor (x = 0, y = 0) {
+  constructor (x, y, speed, health) {
     super({asset: 'slime_enemy'});
 
     this.x = x;
     this.y = y;
-    this.maxHp = 10;
+    this.maxHp = health;
     this.hp = this.maxHp;
+
+    console.log(this.maxHp)
 
     game.addEnemy.dispatch(this);
 
+    this.speed = speed;
+
+    this.health = health;
+
     game.physics.arcade.enable(this, Phaser.Physics.ARCADE);
     // this.body.setSize(130, 170);
-    this.speed = 4;
 
     this.buildHPBar();
   }
@@ -29,6 +34,9 @@ export default class Enemy extends Sprite {
     // if (this.lives === 0) {
     //   this.gameOver();
     // }
+    // this.y += Math.floor((Math.random() * this.maxSpeed) + this.minSpeed);
+
+
 
     if (this.y >= 950) {
       game.camera.shake(0.02, 100);
@@ -53,16 +61,14 @@ export default class Enemy extends Sprite {
     });
   }
 
-  gameOver () {
-    this.deathMessage = new Text({
-      text: 'Your cannon has exploded!',
-      x: 0,
-      y: 500,
-      backgroundColor: 'white',
-      fontSize: 80,
-      fontStyle: 'bold'
-    });
-    this.add(this.deathMessage);
+  deathCheck () {
+    let count = 3;
+    console.log('Counter: ' + count);
+    if (count <= 0) {
+      count--;
+    } else {
+      this.gameOver();
+    }
   }
 
   buildHPBar () {
@@ -93,6 +99,10 @@ export default class Enemy extends Sprite {
     this.bar.visible = true;
     this.barBackground.visible = true;
 
-    this.bar.scale.setTo(this.hp / this.maxHp, 1);
+    this.bar.scale.setTo(this.clamp(this.hp / this.maxHp, 0, this.maxHp), 1);
+  }
+
+  clamp(value, min, max) {
+    return Math.min(Math.max(value, min), max);
   }
 }

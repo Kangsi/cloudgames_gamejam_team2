@@ -25,6 +25,19 @@ export default class Cannon extends Phaser.Group {
     this.buildHitBox();
   }
 
+  gameOver () {
+    game.checkDeath.dispatch(this);
+    this.deathMessage = new Text({
+      text: 'Your cannon has exploded!',
+      x: 0,
+      y: 500,
+      backgroundColor: 'white',
+      fontSize: 80,
+      fontStyle: 'bold'
+    });
+    this.add(this.deathMessage);
+  }
+
   buildCannon () {
     this.cannon = new Sprite({
       // asset: 'cannon_1',

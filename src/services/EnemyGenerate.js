@@ -1,10 +1,13 @@
 import Phaser from 'phaser';
 import Enemy from '../sprites/Enemy';
 import Cannon from '../sprites/Cannon';
+import Levels from '../services/Levels';
 
 export default class EnemyGenerate extends Phaser.Group {
   constructor (amount) {
     super(game);
+    this.levels = new Levels();
+
     this.enemies = [];
     this.amount = amount;
     this.x = game.width;
@@ -14,14 +17,25 @@ export default class EnemyGenerate extends Phaser.Group {
     game.removeEnemy.add((enemy) => {
       this.removeEnemy(enemy);
     });
+    game.spawnEnemies.add((level) => {
+      this.spawnEnemies(level);
+    });
   }
 
   spawnEnemies () {
-    for (let i = 0; i < this.amount; i++) {
+    for (let i = 0; i < this.levels.amount; i++) {
+      console.log(i);
+
+      // random spawn place
       const randomX = Math.random() * this.x;
       const randomY = Math.random() * this.y;
-      const tempEnemy = new Enemy(randomX, randomY);
-      this.add(tempEnemy);
+      // pseudo random enemy speed
+      const randomSpeed = Math.random() * (this.levels.maxSpeed - this.levels.minSpeed) + this.levels.minSpeed;
+
+      const enemyHealth = this.levels.health;
+
+      const tempEnemy = new Enemy(randomX, randomY, randomSpeed, enemyHealth);
+      game.add.existing(tempEnemy);
       this.enemies.push(tempEnemy);
     }
   }
@@ -38,6 +52,7 @@ export default class EnemyGenerate extends Phaser.Group {
     }
 
     if (this.enemies.length === 0) {
+      this.levels.addLevel();
       this.spawnEnemies();
     }
   }

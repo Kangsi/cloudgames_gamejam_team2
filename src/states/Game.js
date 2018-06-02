@@ -15,7 +15,7 @@ export default class extends Phaser.State {
     game.fireButton = new Phaser.Signal();
     game.addBullet = new Phaser.Signal();
     game.removeBullet = new Phaser.Signal();
-
+    game.spawnEnemies = new Phaser.Signal();
     game.addEnemy = new Phaser.Signal();
     game.removeEnemy = new Phaser.Signal();
   }
