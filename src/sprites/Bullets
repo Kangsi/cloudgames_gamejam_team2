@@ -6,8 +6,6 @@ export default class Bullets extends Phaser.Group {
   }
 
   update() {
-    console.log(this.children.length);
-
     this.children.forEach((child) => {
       child.update();
     })

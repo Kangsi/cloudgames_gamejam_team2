@@ -6,6 +6,7 @@ import GameManager from '../services/GameManager';
 import EnemyGenerate from '../services/EnemyGenerate';
 import Bullets from '../sprites/Bullets';
 import Enemies from '../sprites/Enemies';
+import PowerUp from '../sprites/PowerUp';
 
 export default class extends Phaser.State {
   init () {
@@ -19,6 +20,7 @@ export default class extends Phaser.State {
     game.spawnEnemies = new Phaser.Signal();
     game.addEnemy = new Phaser.Signal();
     game.removeEnemy = new Phaser.Signal();
+    game.addPowerUp = new Phaser.Signal();
   }
 
   create () {
@@ -27,6 +29,9 @@ export default class extends Phaser.State {
     this.enemyGenerate = new EnemyGenerate(10);
     this.game.bullets = new Bullets();
     this.cannon = new Cannon(game.width / 2, game.height * 0.75);
+
+    this.powerUp = new PowerUp();
+    this.game.add.existing(this.powerUp);
   }
 
   render () {

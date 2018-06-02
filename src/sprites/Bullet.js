@@ -2,14 +2,14 @@ import Phaser from 'phaser';
 import Sprite from '../services/Sprite';
 
 export default class Bullet extends Sprite {
-  constructor (x, y, rotation, speed) {
+  constructor (x, y, rotation, speed, power) {
     super({
       asset: 'projectile',
     });
     this.speed = speed;
     this.x = x;
     this.y = y;
-    this.power = 5;
+    this.power = power;
     game.addBullet.dispatch(this);
     // game.add.existing(this);
     game.physics.arcade.enable(this, Phaser.Physics.ARCADE);
