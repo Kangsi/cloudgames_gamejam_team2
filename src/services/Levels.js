@@ -3,25 +3,26 @@ export default class Levels {
     this.minSpeed = 1;
     this.maxSpeed = 2;
 
-
     this.health = 10;
 
     this.amount = 10;
-
+    this.level = 1;
     // game.spawnEnemies.dispatch(this);
 
-    this.addLevel();
+    //this.addLevel();
     // this.completedLevel();
     // this.completedBoss();
   }
 
   addLevel () {
-    this.minSpeed *= 1.25;
-    this.maxSpeed *= 1.25;
+    this.minSpeed *= 1.1;
+    this.maxSpeed *= 1.1;
 
-    this.health *= 1.2;
+    this.level += 1;
+    console.log(this.level)
+    // this.health *= 1.2;
 
-    this.amount *= 1.3;
+    // this.amount *= 1.3;
   }
 
   completedLevel () {
