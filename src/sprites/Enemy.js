@@ -6,7 +6,6 @@ export default class Enemy extends Sprite {
   constructor (x, y, speed, health, name) {
     super({asset: name, frame: 0});
 
-
     this.x = x;
     this.y = y;
     this.maxHp = health;
@@ -14,12 +13,14 @@ export default class Enemy extends Sprite {
     game.addEnemy.dispatch(this);
     this.animations.add('walk');
     this.animations.play('walk', 30, true);
-
+    this.damage = 1;
     this.speed = speed;
     this.health = health;
 
     game.physics.arcade.enable(this, Phaser.Physics.ARCADE);
     this.buildHPBar();
+
+    this.isAttacking = false;
   }
 
   update () {
@@ -33,9 +34,11 @@ export default class Enemy extends Sprite {
     // }
     // this.y += Math.floor((Math.random() * this.maxSpeed) + this.minSpeed);
 
-    if (this.y >= 950) {
-      // game.camera.shake(0.02, 100);
+    if (this.y >= 950 && !this.isAttacking) {
+      game.camera.shake(0.02, 100);
+      game.doDamage.dispatch(this.damage);
       this.kill();
+      this.isAttacking = true;
     }
   }
 
@@ -43,6 +46,7 @@ export default class Enemy extends Sprite {
     this.hp -= damage;
     this.updateHPBar();
     if (this.hp <= 0) {
+      this.doDeathAnimation();
       this.kill();
     }
   }
@@ -56,14 +60,10 @@ export default class Enemy extends Sprite {
     });
   }
 
-  deathCheck () {
-    let count = 3;
-    console.log('Counter: ' + count);
-    if (count <= 0) {
-      count--;
-    } else {
-      this.gameOver();
-    }
+  doDeathAnimation () {
+    // this.loadTexture(`${this.key}_death`, 0);
+    // this.animations.add('death', 30, false);
+    // this.animations.play('death');
   }
 
   buildHPBar () {
