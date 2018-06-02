@@ -53,7 +53,7 @@ export default class Cannon extends Phaser.Group {
 
   buildHitBox () {
     this.hitbox = new Overlay({
-      alpha: 0.5,
+      alpha: 0,
       x: -game.width / 2,
       y: -this.y,
       width: game.width,
@@ -74,7 +74,7 @@ export default class Cannon extends Phaser.Group {
       this.rotateCannon();
     }
     if (this.spacebar.justPressed()) {
-      this.reload(this.bullets + 5);
+      this.reload(5);
     }
   }
 
@@ -90,16 +90,18 @@ export default class Cannon extends Phaser.Group {
     if (this.bullets) {
       const bullet = new Bullet(this.cannon.position.x + this.x, this.cannon.position.y + this.y, this.cannon.rotation, this.speed);
       this.bullets--;
-      this.reload(this.bullets);
+      this.updateAmountText();
+      this.setCooldownTimer();
     }
-    this.setCooldownTimer();
   }
 
   reload (amount) {
-    this.ammo.destroy();
-    this.amount.destroy();
-    this.bullets = amount;
-    this.buildAmmo(this.bullets);
+    this.bullets += amount;
+    this.updateAmountText()
+  }
+
+  updateAmountText() {
+    this.amount.text = `*${this.bullets}`;
   }
 
   setCooldownTimer () {
