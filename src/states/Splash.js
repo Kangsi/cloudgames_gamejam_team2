@@ -10,6 +10,8 @@ export default class extends Phaser.State {
     game.stage.backgroundColor = '#4488AA';
     game.physics.startSystem(Phaser.Physics.ARCADE);
 
+    this.load.json('level', 'assets/level.json');
+
     this.load.onFileComplete.add(this.fileComplete, this);
     this.load.onLoadComplete.add(this.loadComplete, this);
 

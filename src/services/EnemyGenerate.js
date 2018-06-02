@@ -22,19 +22,43 @@ export default class EnemyGenerate extends Phaser.Group {
   }
 
   spawnEnemies (name) {
-    for (let i = 0; i < this.levels.amount; i++) {
+    const info = this.levels.currentLevelInfo;
+    for (let i = 0; i < info.amount; i++) {
       // random spawn place
       const randomX = Math.random() * this.x;
       const randomY = Math.random() * this.y;
       // pseudo random enemy speed
-      const randomSpeed = Math.random() * (this.levels.maxSpeed - this.levels.minSpeed) + this.levels.minSpeed;
 
-      const enemyHealth = this.levels.health;
-      const tempEnemy = new Enemy(randomX, randomY, randomSpeed, enemyHealth, name);
+      const enemy = this.getRandomEnemy(info.minions);
+
+      const randomSpeed = Math.random() * (enemy.initMaxSpeed - enemy.initMinSpeed) + enemy.initMinSpeed;
+
+      const tempEnemy = new Enemy(randomX, randomY, randomSpeed, enemy.initHealth, enemy.asset);
 
       game.enemies.add(tempEnemy);
       this.enemies.push(tempEnemy);
     }
+  }
+
+  spawnBoss () {
+    const enemy = this.levels.currentLevelInfo.boss;
+    // random spawn place
+    const randomX = game.width / 2;
+    const randomY = Math.random() * this.y;
+    // pseudo random enemy speed
+
+    const randomSpeed = Math.random() * (enemy.initMaxSpeed - enemy.initMinSpeed) + enemy.initMinSpeed;
+
+    const tempEnemy = new Enemy(randomX, randomY, randomSpeed, enemy.initHealth, enemy.asset);
+
+    game.enemies.add(tempEnemy);
+    this.enemies.push(tempEnemy);
+  }
+
+  getRandomEnemy (minions) {
+    const keys = Object.keys(minions);
+    const randomIndex = Math.floor(Math.random() * keys.length);
+    return minions[keys[randomIndex]];
   }
 
   update () {
@@ -49,10 +73,11 @@ export default class EnemyGenerate extends Phaser.Group {
     }
 
     if (this.enemies.length === 0) {
-      if (this.levels.level === 3) {
-        this.levels.addBossLevel();
+      if (this.levels.isBossLevel()) {
+        this.spawnBoss();
       }
       this.levels.addLevel();
+
       this.spawnEnemies();
     }
   }
