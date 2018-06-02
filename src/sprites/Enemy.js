@@ -11,17 +11,12 @@ export default class Enemy extends Sprite {
     this.maxHp = health;
     this.hp = this.maxHp;
 
-    console.log(this.maxHp)
-
     game.addEnemy.dispatch(this);
 
     this.speed = speed;
-
     this.health = health;
 
     game.physics.arcade.enable(this, Phaser.Physics.ARCADE);
-    // this.body.setSize(130, 170);
-
     this.buildHPBar();
   }
 
@@ -35,8 +30,6 @@ export default class Enemy extends Sprite {
     //   this.gameOver();
     // }
     // this.y += Math.floor((Math.random() * this.maxSpeed) + this.minSpeed);
-
-
 
     if (this.y >= 950) {
       game.camera.shake(0.02, 100);
@@ -102,7 +95,7 @@ export default class Enemy extends Sprite {
     this.bar.scale.setTo(this.clamp(this.hp / this.maxHp, 0, this.maxHp), 1);
   }
 
-  clamp(value, min, max) {
+  clamp (value, min, max) {
     return Math.min(Math.max(value, min), max);
   }
 }

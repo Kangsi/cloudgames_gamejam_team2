@@ -11,7 +11,7 @@ export default class EnemyGenerate extends Phaser.Group {
     this.enemies = [];
     this.amount = amount;
     this.x = game.width;
-    this.y = -5000;
+    this.y = -1000;
     this.spawnEnemies(amount);
 
     game.removeEnemy.add((enemy) => {
@@ -24,8 +24,6 @@ export default class EnemyGenerate extends Phaser.Group {
 
   spawnEnemies () {
     for (let i = 0; i < this.levels.amount; i++) {
-      console.log(i);
-
       // random spawn place
       const randomX = Math.random() * this.x;
       const randomY = Math.random() * this.y;
@@ -33,9 +31,9 @@ export default class EnemyGenerate extends Phaser.Group {
       const randomSpeed = Math.random() * (this.levels.maxSpeed - this.levels.minSpeed) + this.levels.minSpeed;
 
       const enemyHealth = this.levels.health;
-
       const tempEnemy = new Enemy(randomX, randomY, randomSpeed, enemyHealth);
-      game.add.existing(tempEnemy);
+
+      game.enemies.add(tempEnemy);
       this.enemies.push(tempEnemy);
     }
   }

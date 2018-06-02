@@ -5,12 +5,13 @@ import Enemy from '../sprites/Enemy';
 import GameManager from '../services/GameManager';
 import EnemyGenerate from '../services/EnemyGenerate';
 import Bullets from '../sprites/Bullets';
+import Enemies from '../sprites/Enemies';
 
 export default class extends Phaser.State {
   init () {
     const background = game.add.sprite(-50, -50, 'background');
-    background.scale.setTo(1.2)
-}
+    background.scale.setTo(1.2);
+  }
   preload () {
     game.fireButton = new Phaser.Signal();
     game.addBullet = new Phaser.Signal();
@@ -22,11 +23,10 @@ export default class extends Phaser.State {
 
   create () {
     this.gameManager = new GameManager();
+    this.game.enemies = new Enemies();
     this.enemyGenerate = new EnemyGenerate(10);
     this.game.bullets = new Bullets();
     this.cannon = new Cannon(game.width / 2, game.height * 0.75);
-    this.enemy = new Enemy(25, 25);
-    this.game.add.existing(this.enemy);
   }
 
   render () {

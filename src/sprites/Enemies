@@ -1,0 +1,17 @@
+import Phaser from 'phaser';
+
+export default class Enemies extends Phaser.Group {
+  constructor () {
+    super(game);
+  }
+
+  update () {
+    this.children.sort((a, b) => {
+      return a.y - b.y;
+    });
+
+    this.children.forEach((child) => {
+      child.update();
+    });
+  }
+}

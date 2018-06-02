@@ -47,7 +47,6 @@ export default class Cannon extends Phaser.Group {
     if (index > -1) {
       this.enemies.splice(index, 1);
     }
-    console.log(this.enemies.length);
   }
 
   update () {

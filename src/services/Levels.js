@@ -8,11 +8,11 @@ export default class Levels {
 
     this.amount = 10;
 
-    game.spawnEnemies.dispatch(this);
+    // game.spawnEnemies.dispatch(this);
 
     this.addLevel();
-    this.completedLevel();
-    this.completedBoss();
+    // this.completedLevel();
+    // this.completedBoss();
   }
 
   addLevel () {
