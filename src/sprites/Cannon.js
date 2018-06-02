@@ -16,8 +16,9 @@ export default class Cannon extends Phaser.Group {
     this.cooldownDuration = 500;
 
     this.speed = 50;
-
     this.bullets = 10;
+
+    this.spacebar = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
 
     this.buildCannon();
     this.buildAmmo(this.bullets);
@@ -72,6 +73,9 @@ export default class Cannon extends Phaser.Group {
     if (game.input.activePointer.isDown && this.hitbox.input.checkPointerOver(game.input.activePointer)) {
       this.rotateCannon();
     }
+    if (this.spacebar.justPressed()) {
+      this.reload(this.bullets + 5);
+    }
   }
 
   rotateCannon () {
@@ -86,10 +90,16 @@ export default class Cannon extends Phaser.Group {
     if (this.bullets) {
       const bullet = new Bullet(this.cannon.position.x + this.x, this.cannon.position.y + this.y, this.cannon.rotation, this.speed);
       this.bullets--;
-      this.ammo.destroy();this.amount.destroy();
-      this.buildAmmo(this.bullets);
-    }console.log(this.bullets);
+      this.reload(this.bullets);
+    }
     this.setCooldownTimer();
+  }
+
+  reload (amount) {
+    this.ammo.destroy();
+    this.amount.destroy();
+    this.bullets = amount;
+    this.buildAmmo(this.bullets);
   }
 
   setCooldownTimer () {

@@ -1,5 +1,6 @@
 import Phaser from 'phaser';
 import Enemy from '../sprites/Enemy';
+import Cannon from '../sprites/Cannon';
 
 export default class EnemyGenerate extends Phaser.Group {
   constructor (amount) {
