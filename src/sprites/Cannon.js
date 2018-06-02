@@ -2,6 +2,9 @@ import Phaser from 'phaser';
 import Sprite from '../services/Sprite';
 import Overlay from '../services/Overlay';
 import Bullet from './Bullet';
+import Enemy from './Enemy';
+import Text from '../services/Text';
+
 export default class Cannon extends Phaser.Group {
   constructor (x = 0, y = 0) {
     super(game);
@@ -14,20 +17,37 @@ export default class Cannon extends Phaser.Group {
 
     this.speed = 50;
 
-    this.buildCannon();
-    this.buildHitBox();
+    this.bullets = 10;
 
-    game.fireButton.add(() => {
-      this.shoot();
-    });
+    this.buildCannon();
+    this.buildAmmo(this.bullets);
+    this.buildHitBox();
   }
 
   buildCannon () {
     this.cannon = new Sprite({
-      asset: 'cannon_1',
+      // asset: 'cannon_1',
+      asset: 'cannon_2',
     });
-
     this.add(this.cannon);
+  }
+
+  buildAmmo (bullets) {
+    this.ammo = new Sprite({
+      // asset: 'cannon_1',
+      asset: 'mushroom',
+      x: -300,
+      y: 200
+    });
+    this.amount = new Text({
+      text: '*' + bullets,
+      x: -250,
+      y: 160,
+      fontSize: 60,
+      align: 'left'
+    });
+    this.add(this.amount);
+    this.add(this.ammo);
   }
 
   buildHitBox () {
@@ -63,7 +83,12 @@ export default class Cannon extends Phaser.Group {
     if (this.onCooldown) {
       return;
     }
-    const bullet = new Bullet(this.cannon.position.x + this.x, this.cannon.position.y + this.y, this.cannon.rotation, this.speed);
+    if (this.bullets) {
+      const bullet = new Bullet(this.cannon.position.x + this.x, this.cannon.position.y + this.y, this.cannon.rotation, this.speed);
+      this.bullets--;
+      this.ammo.destroy();this.amount.destroy();
+      this.buildAmmo(this.bullets);
+    }console.log(this.bullets);
     this.setCooldownTimer();
   }
 

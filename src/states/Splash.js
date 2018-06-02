@@ -23,8 +23,9 @@ export default class extends Phaser.State {
     //
 
     this.load.image('background', 'assets/images/background.png');
-    this.load.image('cannon_1', 'assets/images/cannon_1.png');
-    this.load.image('slime_enemy', 'assets/images/slime_enemy.png');
+    this.load.image('cannon_2', 'assets/images/cannon_2.png');
+    this.load.image('slime_enemy', 'assets/images/slime_enemy2.png');
+    this.load.image('demon_enemy', 'assets/images/demon_enemy.png');
     this.load.image('mushroom', 'assets/images/mushroom2.png');
 
   }

@@ -17,8 +17,8 @@ export default class EnemyGenerate extends Phaser.Group {
 
   spawnEnemies () {
     for (let i = 0; i < this.amount; i++) {
-      const randomX = Math.random() * game.width;
-      const randomY = Math.random() * -10000;
+      const randomX = Math.random() * this.x;
+      const randomY = Math.random() * this.y;
       const tempEnemy = new Enemy(randomX, randomY);
       game.add.existing(tempEnemy);
       this.enemies.push(tempEnemy);
