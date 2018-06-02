@@ -5,6 +5,7 @@ import Phaser from 'phaser';
 import SplashState from './states/Splash';
 import GameState from './states/Game';
 import Facebook from './services/Facebook';
+import Home from './states/Home';
 
 import config from './config';
 
@@ -14,6 +15,7 @@ class Game extends Phaser.Game {
     console.log('test');
     this.state.add('Splash', SplashState, false);
     this.state.add('Game', GameState, false);
+    this.state.add('Home', Home, true);
 
     // with Cordova with need to wait that the device is ready so we will call the Boot state in another file
     if (!window.cordova) {
