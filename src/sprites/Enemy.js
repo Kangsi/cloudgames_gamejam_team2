@@ -16,7 +16,7 @@ export default class Enemy extends Sprite {
     this.damage = 1;
     this.speed = speed;
     this.health = health;
-
+    this.points = 3;
     game.physics.arcade.enable(this, Phaser.Physics.ARCADE);
     this.buildHPBar();
 
@@ -45,13 +45,13 @@ export default class Enemy extends Sprite {
       this.kill();
       this.isAttacking = true;
     }
-
   }
 
   doDamage (damage) {
     this.hp -= damage;
     this.updateHPBar();
     if (this.hp <= 0) {
+      game.updateScore.dispatch(this.points);
       this.doDeathAnimation();
       this.kill();
     }

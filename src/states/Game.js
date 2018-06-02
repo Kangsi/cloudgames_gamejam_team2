@@ -7,6 +7,7 @@ import Bullets from '../sprites/Bullets';
 import Enemies from '../sprites/Enemies';
 import PowerUps from '../sprites/PowerUps';
 import EndScreen from '../sprites/EndScreen';
+import Score from '../sprites/Score';
 
 import PowerUpSpawner from '../services/PowerUpSpawner';
 
@@ -33,6 +34,7 @@ export default class extends Phaser.State {
     game.resetGame = new Phaser.Signal();
     game.restart = new Phaser.Signal();
     game.toHome = new Phaser.Signal();
+    game.updateScore = new Phaser.Signal();
   }
 
   create () {
@@ -56,6 +58,7 @@ export default class extends Phaser.State {
     this.powerUpSpawner = new PowerUpSpawner();
     // this.ammo = new Ammo();
     // this.game.add.existing(this.ammo);
+    this.score = new Score();
     this.endScreen = new EndScreen();
   }
 

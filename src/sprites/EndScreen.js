@@ -61,7 +61,7 @@ export default class EndScreen extends Phaser.Group {
     });
 
     this.continueText = new Text({
-      text: 'Continue',
+      text: 'Revive',
     });
 
     this.continueButton.addChild(this.continueText);
