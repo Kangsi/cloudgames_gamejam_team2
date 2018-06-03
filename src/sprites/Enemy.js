@@ -53,12 +53,15 @@ export default class Enemy extends Sprite {
 
   doDamage (damage) {
     this.hp -= damage;
-    game.sound.play(this.hitSound, 70, false);
     this.updateHPBar();
     if (this.hp <= 0) {
+      game.sound.play(this.hitSound, 1, false);
+
       game.updateScore.dispatch(this.points);
       this.doDeathAnimation();
       this.kill();
+    } else {
+      game.sound.play(this.deathSound, 1, false);
     }
   }
 
@@ -66,7 +69,6 @@ export default class Enemy extends Sprite {
     game.removeEnemy.dispatch(this);
     this.tween = game.add.tween(this).to({ alpha: 0 }, 1000, null, true);
     this.tween.onComplete.add(() => {
-      game.sound.play(this.deathSound, 70, false);
       this.destroy();
     });
   }

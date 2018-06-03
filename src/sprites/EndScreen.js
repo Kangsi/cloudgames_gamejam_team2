@@ -70,6 +70,7 @@ export default class EndScreen extends Phaser.Group {
       this.loading.visible = true;
       game.time.events.add(2000, () => {
         Facebook.getRewardedVideo(() => {
+          game.addPowerUpToCannon.dispatch('power', 4);
           this.doReset();
           this.overlay.visible = false;
           this.loading.visible = false;

@@ -8,16 +8,17 @@ import Enemies from '../sprites/Enemies';
 import PowerUps from '../sprites/PowerUps';
 import EndScreen from '../sprites/EndScreen';
 import Score from '../sprites/Score';
+import Wave from '../sprites/Wave';
 
 import PowerUpSpawner from '../services/PowerUpSpawner';
 
 export default class extends Phaser.State {
-  init () {
+  init() {
     this.background = game.add.sprite(-50, -50, 'background1');
     this.background.scale.setTo(1.1 * 2 / 3);
   }
 
-  preload () {
+  preload() {
     game.fireButton = new Phaser.Signal();
     game.addBullet = new Phaser.Signal();
     game.removeBullet = new Phaser.Signal();
@@ -35,10 +36,11 @@ export default class extends Phaser.State {
     game.restart = new Phaser.Signal();
     game.toHome = new Phaser.Signal();
     game.updateScore = new Phaser.Signal();
+    game.updateWave = new Phaser.Signal();
     game.changeBackground = new Phaser.Signal();
   }
 
-  create () {
+  create() {
     game.restart.add(() => {
       this.restart();
     });
@@ -64,31 +66,35 @@ export default class extends Phaser.State {
     // this.ammo = new Ammo();
     // this.game.add.existing(this.ammo);
     this.score = new Score();
+    this.wave = new Wave();
+
     this.endScreen = new EndScreen();
   }
 
-  render () {
+
+
+  render() {
     // for (let i = 0; i < this.gameManager.bullets.length; i += 1) {
     //   game.debug.body(this.gameManager.bullets[i]);
     // }
-    for (let i = 0; i < this.gameManager.powerUps.length; i += 1) {
-      game.debug.body(this.gameManager.powerUps[i]);
-    }
+    // for (let i = 0; i < this.gameManager.powerUps.length; i += 1) {
+    //   game.debug.body(this.gameManager.powerUps[i]);
+    // }
     // for (let i = 0; i < this.gameManager.enemies.length; i += 1) {
     //   game.debug.body(this.gameManager.enemies[i]);
     // }
   }
 
-  restart () {
+  restart() {
     this.state.start('Game');
   }
 
-  setNewBackground (bg1, bg2) {
+  setNewBackground(bg1, bg2) {
     this.background.loadTexture(bg1);
     this.wall.loadTexture(bg2);
   }
 
-  toHome () {
+  toHome() {
     this.state.start('Home');
   }
 }

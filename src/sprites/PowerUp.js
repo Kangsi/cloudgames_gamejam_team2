@@ -19,12 +19,13 @@ export default class PowerUp extends Sprite {
     game.addPowerUp.dispatch(this);
 
     this.events.onInputUp.add(() => {
-      game.addPowerUpToCannon.dispatch(this.type, this.value);
       this.kill();
     });
   }
 
   kill () {
+    game.addPowerUpToCannon.dispatch(this.type, this.value);
+
     this.destroy();
     game.removePowerUp.dispatch(this);
   }

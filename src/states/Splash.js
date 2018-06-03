@@ -47,6 +47,8 @@ export default class extends Phaser.State {
     this.load.spritesheet('cyclops', 'assets/images/cyclops_1_anim_sheet.png', 128, 195, 15);
     this.load.spritesheet('cyclops_boss', 'assets/images/cyclops_anim_sheet.png', 300, 300, 15);
 
+    this.load.spritesheet('final_boss', 'assets/images/final_boss.png', 650, 600, 18);
+
     this.load.image('cannon_base1', 'assets/images/cannon_base1.png');
     this.load.image('cannon_base2', 'assets/images/cannon_base2.png');
     this.load.image('cannon_base3', 'assets/images/cannon_base3.png');
@@ -66,7 +68,6 @@ export default class extends Phaser.State {
     this.load.image('game_over', 'assets/images/game_over.png');
 
     this.load.image('corner_display', 'assets/images/corner_display.png');
-
 
     this.load.image('button_audio', 'assets/images/button_audio.png');
     this.load.image('button_mute', 'assets/images/button_mute.png');

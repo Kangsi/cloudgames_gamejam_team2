@@ -15,13 +15,14 @@ export default class extends Phaser.State {
       anchorX: 0,
       anchorY: 0
     });
+    
 
     background.scale.setTo(2 / 3);
 
     game.add.existing(background);
 
     this.buttonMute = new ButtonMute(game.width / 2, game.height * 0.85, this.switchGameState, this);
-    game.sound.play('home', 100, true);
+    game.sound.play('home', 1, true);
 
     this.game.add.existing(this.buttonMute);
 
