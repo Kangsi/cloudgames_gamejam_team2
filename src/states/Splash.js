@@ -75,11 +75,11 @@ export default class extends Phaser.State {
     // slime sounds suckah
     this.load.audio('slime_move', 'assets/audio/enemy/slimes/slime_movement.mp3');
     this.load.audio('slime_hit', 'assets/audio/enemy/slimes/slime_hit.mp3');
-    this.load.audio('slime_death', 'assets/audio/e0nemy/slimes/slime_death.mp3');
+    this.load.audio('slime_death', 'assets/audio/enemy/slimes/slime_death.mp3');
     // demon sounds
     this.load.audio('demon_move', 'assets/audio/enemy/demon/demon_movement.mp3');
     this.load.audio('demon_hit', 'assets/audio/enemy/demon/demon_damage.mp3');
-    this.load.audio('demon_death', 'assets/audio/enemy/demon/_demon_dying.mp3');
+    this.load.audio('demon_death', 'assets/audio/enemy/demon/demon_dying.mp3');
   }
 
   fileComplete (progress, cacheKey, success, totalLoaded, totalFiles) {
