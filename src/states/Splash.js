@@ -27,18 +27,25 @@ export default class extends Phaser.State {
     this.load.image('background2', 'assets/images/background2_1.png');
     this.load.image('wall2', 'assets/images/background2_2.png');
 
+    this.load.image('background3', 'assets/images/background3_1.png');
+    this.load.image('wall3', 'assets/images/background3_2.png');
+
     this.load.image('cannon_2', 'assets/images/cannon_2.png');
     this.load.image('slime_enemy', 'assets/images/slime_enemy2.png');
     this.load.image('demon_enemy', 'assets/images/demon_enemy.png');
     this.load.image('mushroom', 'assets/images/mushroom2.png');
     this.load.image('projectile', 'assets/images/projectile.png');
     this.load.spritesheet('crate', 'assets/images/crate_spritesheet.png', 281, 128, 12);
-    this.load.spritesheet('cyclops', 'assets/images/cyclops_1_anim_sheet.png', 281, 128, 12);
     this.load.spritesheet('slime_boss', 'assets/images/slime_boss_anim-sheet.png', 424, 300, 19);
 
+    this.load.spritesheet('slime', 'assets/images/demon_2_anim_sheet.png', 141, 190, 20);
+    this.load.spritesheet('slime_death', 'assets/images/demon_2_anim_death.png', 166, 199, 11);
+
     this.load.spritesheet('demon1', 'assets/images/demon_1_anim_sheet.png', 128, 107, 10);
-    this.load.spritesheet('demon2', 'assets/images/demon_2_anim_sheet.png', 141, 190, 20);
-    this.load.spritesheet('demon2_death', 'assets/images/demon_2_anim_death.png', 166, 199, 11);
+    this.load.spritesheet('demon_boss_1', 'assets/images/demon_boss_anim_sheet.png', 501, 250, 14);
+
+    this.load.spritesheet('cyclops', 'assets/images/cyclops_1_anim_sheet.png', 128, 195, 15);
+    this.load.spritesheet('cyclops_boss', 'assets/images/cyclops_anim_sheet.png', 300, 300, 15);
 
     this.load.image('cannon_base1', 'assets/images/cannon_base1.png');
     this.load.image('cannon_base2', 'assets/images/cannon_base2.png');
@@ -49,10 +56,17 @@ export default class extends Phaser.State {
     this.load.image('test', 'assets/images/test.png');
     this.load.spritesheet('cannon', 'assets/images/cannon.png', 136, 246, 11);
     this.load.image('logo', 'assets/images/logo.png');
+    this.load.image('healthbar_green', 'assets/images/healthbar_green.png');
+    this.load.image('healthbar_red', 'assets/images/healthbar_red.png');
+
+    this.load.spritesheet('loading_screen', 'assets/images/loading_screen.png', 384, 384, 20);
 
     this.load.image('blue_button', 'assets/images/button_blue.png');
     this.load.image('red_button', 'assets/images/button_red.png');
     this.load.image('game_over', 'assets/images/game_over.png');
+
+    this.load.image('corner_display', 'assets/images/corner_display.png');
+
 
     this.load.image('button_audio', 'assets/images/button_audio.png');
     this.load.image('button_mute', 'assets/images/button_mute.png');

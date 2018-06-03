@@ -45,7 +45,7 @@ export default class EnemyGenerate extends Phaser.Group {
       this.sound = enemy.sound;
       const randomSpeed = Math.random() * (enemy.initMaxSpeed - enemy.initMinSpeed) + enemy.initMinSpeed;
 
-      const tempEnemy = new Enemy(randomX, randomY, randomSpeed, enemy.initHealth, enemy.asset);
+      const tempEnemy = new Enemy(randomX, randomY, randomSpeed, enemy.initHealth, enemy.asset, false);
 
       game.enemies.add(tempEnemy);
       this.enemies.push(tempEnemy);
@@ -62,7 +62,7 @@ export default class EnemyGenerate extends Phaser.Group {
 
     const randomSpeed = Math.random() * (enemy.initMaxSpeed - enemy.initMinSpeed) + enemy.initMinSpeed;
 
-    const tempEnemy = new Enemy(randomX, randomY, randomSpeed, enemy.initHealth, enemy.asset);
+    const tempEnemy = new Enemy(randomX, randomY, randomSpeed, enemy.initHealth, enemy.asset, true);
 
     game.enemies.add(tempEnemy);
     this.enemies.push(tempEnemy);

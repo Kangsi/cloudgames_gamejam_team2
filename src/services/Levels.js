@@ -40,11 +40,13 @@ export default class Levels {
   }
 
   isBossLevel () {
-    if (!this.levelInfo[this.levelInfoIndex + 1]) {
-      console.warn('no more levels');
-      return false;
-    }
-    return this.levelInfo[this.levelInfoIndex + 1].level - 1 === this.level;
+    // if (!this.levelInfo[this.levelInfoIndex + 1]) {
+    //   console.warn('no more levels');
+    //   return false;
+    // }
+    // return this.levelInfo[this.levelInfoIndex + 1].level - 1 === this.level;
+    //
+    return (this.currentLevelInfo.bossLevel === this.level);
   }
 
   applyNextLevel () {

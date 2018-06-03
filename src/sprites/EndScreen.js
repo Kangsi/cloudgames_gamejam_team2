@@ -31,6 +31,18 @@ export default class EndScreen extends Phaser.Group {
     });
 
     this.add(this.overlay);
+
+    this.loading = new Sprite({
+      asset: 'loading_screen',
+      frame: 0,
+      visible: false,
+    });
+
+    this.loading.visible = false;
+    this.loading.animations.add('loading');
+    this.loading.animations.play('loading', 30, true);
+
+    this.add(this.loading);
   }
 
   buildScreen () {
@@ -54,10 +66,15 @@ export default class EndScreen extends Phaser.Group {
 
     this.continueButton.events.onInputUp.add(() => {
       // TODO add ads
-      Facebook.getRewardedVideo(() => {
-        this.doReset();
-        this.overlay.visible = true;
-      }, this);
+      this.overlay.visible = true;
+      this.loading.visible = true;
+      game.time.events.add(2000, () => {
+        Facebook.getRewardedVideo(() => {
+          this.doReset();
+          this.overlay.visible = false;
+          this.loading.visible = false;
+        }, this);
+      });
     });
 
     this.continueText = new Text({
