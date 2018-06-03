@@ -71,15 +71,15 @@ export default class extends Phaser.State {
 
     this.load.image('button_audio', 'assets/images/button_audio.png');
     this.load.image('button_mute', 'assets/images/button_mute.png');
-    this.load.audio('home', 'assets/audio/Menu/menuMusic.mp3');
+    this.load.audio('home', 'assets/audio/menu/menu_music.mp3');
     // slime sounds suckah
-    this.load.audio('slime_move', 'assets/audio/Enemy/Slimes/slimeMovement.mp3');
-    this.load.audio('slime_hit', 'assets/audio/Enemy/Slimes/slimeHit.mp3');
-    this.load.audio('slime_death', 'assets/audio/Enemy/Slimes/slimeDeath.mp3');
+    this.load.audio('slime_move', 'assets/audio/enemy/slimes/slime_movement.mp3');
+    this.load.audio('slime_hit', 'assets/audio/enemy/slimes/slime_hit.mp3');
+    this.load.audio('slime_death', 'assets/audio/e0nemy/slimes/slime_death.mp3');
     // demon sounds
-    this.load.audio('demon_move', 'assets/audio/Enemy/Demon/demonMovement.mp3');
-    this.load.audio('demon_hit', 'assets/audio/Enemy/Demon/demonDamage.mp3');
-    this.load.audio('demon_death', 'assets/audio/Enemy/Demon/DemonDying.mp3');
+    this.load.audio('demon_move', 'assets/audio/enemy/demon/demon_movement.mp3');
+    this.load.audio('demon_hit', 'assets/audio/enemy/demon/demon_damage.mp3');
+    this.load.audio('demon_death', 'assets/audio/enemy/demon/_demon_dying.mp3');
   }
 
   fileComplete (progress, cacheKey, success, totalLoaded, totalFiles) {
