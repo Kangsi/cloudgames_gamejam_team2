@@ -138,6 +138,11 @@ export default class Cannon extends Phaser.Group {
 
     this.cannon.animations.play('shoot', 60, false);
     game.time.events.add(150, () => {
+      let array = ['shot1', 'shot2', 'shot3'];
+      let randomShot = array[Math.floor(Math.random() * array.length)];
+      console.log(randomShot);
+      game.sound.play(randomShot, 0.2, false);
+
       const bullet = new Bullet(this.cannon.position.x + this.x, this.cannon.position.y + this.y, this.cannon.rotation, this.speed, this.power);
       game.bullets.add(bullet);
     });

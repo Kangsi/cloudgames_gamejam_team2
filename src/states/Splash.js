@@ -1,7 +1,7 @@
 import Phaser from 'phaser';
 import {centerGameObjects} from '../utils';
 import Facebook from '../services/Facebook';
-import Enemy from '../sprites/Enemy';
+import enemy from '../sprites/enemy';
 
 export default class extends Phaser.State {
   init () {
@@ -71,15 +71,34 @@ export default class extends Phaser.State {
 
     this.load.image('button_audio', 'assets/images/button_audio.png');
     this.load.image('button_mute', 'assets/images/button_mute.png');
+
+    // sounds
     this.load.audio('home', 'assets/audio/menu/menu_music.mp3');
-    // slime sounds suckah
-    this.load.audio('slime_move', 'assets/audio/enemy/slimes/slime_movement.mp3');
-    this.load.audio('slime_hit', 'assets/audio/enemy/slimes/slime_hit.mp3');
-    this.load.audio('slime_death', 'assets/audio/enemy/slimes/slime_death.mp3');
-    // demon sounds
+    // stage 1 + slime sounds
+    this.load.audio('slime_bgsound', 'assets/audio/stage/stage1.mp3');
+    this.load.audio('slime_move', 'assets/audio/enemy/slime/slime_movement.mp3');
+    this.load.audio('slime_hit', 'assets/audio/enemy/slime/slime_hit.mp3');
+    this.load.audio('slime_death', 'assets/audio/enemy/slime/slime_death.mp3');
+    // stage 2 + demon sounds
+    this.load.audio('demon_bgsound', 'assets/audio/stage/stage2.mp3');
     this.load.audio('demon_move', 'assets/audio/enemy/demon/demon_movement.mp3');
     this.load.audio('demon_hit', 'assets/audio/enemy/demon/demon_damage.mp3');
     this.load.audio('demon_death', 'assets/audio/enemy/demon/demon_dying.mp3');
+    // stage 3 + cyclops sounds
+    this.load.audio('cyclops_bgsound', 'assets/audio/stage/stage3.mp3');
+    this.load.audio('cyclops_move', 'assets/audio/enemy/cyclops/cyclops_movement.mp3');
+    this.load.audio('cyclops_hit', 'assets/audio/enemy/cyclops/cyclops_damage.mp3');
+    this.load.audio('cyclops_death', 'assets/audio/enemy/cyclops/cyclops_dying.mp3');
+    // stage 4 + boss sounds
+    this.load.audio('slime_bgsound', 'assets/audio/stage/stage1.mp3');
+    this.load.audio('slime_boss', 'assets/audio/enemy/boss/boss_slime.mp3');
+    this.load.audio('demon_boss', 'assets/audio/enemy/boss/boss_demon.mp3');
+    this.load.audio('cyclops_boss', 'assets/audio/enemy/boss/boss_cyclops.mp3');
+    // Shooting sounds + game over
+    this.load.audio('gameover', 'assets/audio/cannon/gameover.mp3');
+    this.load.audio('shot1', 'assets/audio/cannon/shooting.mp3');
+    this.load.audio('shot2', 'assets/audio/cannon/shooting2.mp3');
+    this.load.audio('shot3', 'assets/audio/cannon/shooting3.mp3');
   }
 
   fileComplete (progress, cacheKey, success, totalLoaded, totalFiles) {
