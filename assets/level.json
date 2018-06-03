@@ -8,7 +8,9 @@
     "bg2": "wall1",
     "boss": {
       "asset": "slime_boss",
-      "sound": "slime_move",
+      "moveSound": "slime_move",
+      "hitSound": "slime_hit",
+      "deathSound": "slime_death",
       "initMinSpeed": 1,
       "initMaxSpeed": 1.5,
       "initHealth": 200
@@ -16,14 +18,18 @@
     "minions": {
       "demon1": {
         "asset": "slime",
-        "sound": "slime_move",
+        "moveSound": "slime_move",
+        "hitSound": "slime_hit",
+        "deathSound": "slime_death",
         "initMinSpeed": 1,
         "initMaxSpeed": 1.5,
         "initHealth": 5
       },
       "demon2": {
         "asset": "slime",
-        "sound": "slime_move",
+        "moveSound": "slime_move",
+        "hitSound": "slime_hit",
+        "deathSound": "slime_death",
         "initMinSpeed": 2,
         "initMaxSpeed": 2.5,
         "initHealth": 10
@@ -39,22 +45,29 @@
     "bg2": "wall2",
     "boss": {
       "asset": "demon_boss_1",
-      "sound": "slime_move",
+      "asset": "demon_enemy",
+      "moveSound": "slime_move",
+      "hitSound": "slime_hit",
+      "deathSound": "slime_death",
       "initMinSpeed": 1,
       "initMaxSpeed": 1.5,
       "initHealth": 200
     },
     "minions": {
       "demon1": {
-        "asset": "demon1",
-        "sound": "slime_move",
+        "asset": "slime_enemy",
+        "moveSound": "slime_move",
+        "hitSound": "slime_hit",
+        "deathSound": "slime_death",
         "initMinSpeed": 2,
         "initMaxSpeed": 2,
         "initHealth": 15
       },
       "demon2": {
-        "asset": "demon1",
-        "sound": "slime_move",
+        "asset": "slime_enemy",
+        "moveSound": "slime_move",
+        "hitSound": "slime_hit",
+        "deathSound": "slime_death",
         "initMinSpeed": 3,
         "initMaxSpeed": 3,
         "initHealth": 5
@@ -65,13 +78,14 @@
     "id": 2,
     "level": 5,
     "bossLevel": 6,
-
     "amount": 8,
     "bg1": "background3",
     "bg2": "wall3",
     "boss": {
       "asset": "cyclops_boss",
-      "sound": "slime_move",
+      "moveSound": "slime_move",
+      "hitSound": "slime_move",
+      "deathSound": "slime_move",
       "initMinSpeed": 1,
       "initMaxSpeed": 1.5,
       "initHealth": 200
@@ -79,14 +93,18 @@
     "minions": {
       "demon1": {
         "asset": "cyclops",
-        "sound": "slime_move",
+        "moveSound": "slime_move",
+        "hitSound": "slime_move",
+        "deathSound": "slime_move",
         "initMinSpeed": 1,
         "initMaxSpeed": 1,
         "initHealth": 40
       },
       "demon2": {
         "asset": "cyclops",
-        "sound": "slime_move",
+        "moveSound": "slime_move",
+        "hitSound": "slime_move",
+        "deathSound": "slime_move",
         "initMinSpeed": 5,
         "initMaxSpeed": 5,
         "initHealth": 10

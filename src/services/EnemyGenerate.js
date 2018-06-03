@@ -42,15 +42,15 @@ export default class EnemyGenerate extends Phaser.Group {
       // pseudo random enemy speed
 
       const enemy = this.getRandomEnemy(info.minions);
-      this.sound = enemy.sound;
+      this.sound = enemy.moveSound;
       const randomSpeed = Math.random() * (enemy.initMaxSpeed - enemy.initMinSpeed) + enemy.initMinSpeed;
 
-      const tempEnemy = new Enemy(randomX, randomY, randomSpeed, enemy.initHealth, enemy.asset, false);
+      const tempEnemy = new Enemy(randomX, randomY, randomSpeed, enemy.initHealth, enemy.asset, enemy.hitSound, enemy.deathSound, false);
 
       game.enemies.add(tempEnemy);
       this.enemies.push(tempEnemy);
     }
-    game.sound.play(this.sound, 100, true);
+    //game.sound.play(this.sound, 5, true);
   }
 
   spawnBoss () {
@@ -62,7 +62,8 @@ export default class EnemyGenerate extends Phaser.Group {
 
     const randomSpeed = Math.random() * (enemy.initMaxSpeed - enemy.initMinSpeed) + enemy.initMinSpeed;
 
-    const tempEnemy = new Enemy(randomX, randomY, randomSpeed, enemy.initHealth, enemy.asset, true);
+
+    const tempEnemy = new Enemy(randomX, randomY, randomSpeed, enemy.initHealth, enemy.asset, enemy.hitSound, enemy.deathSound, true);
 
     game.enemies.add(tempEnemy);
     this.enemies.push(tempEnemy);
@@ -101,6 +102,7 @@ export default class EnemyGenerate extends Phaser.Group {
   createNewWave () {
     console.log('create wave');
     game.time.events.add(this.levels.waveDelay, () => {
+
       if (this.levels.isBossLevel()) {
         this.spawnBoss();
       }

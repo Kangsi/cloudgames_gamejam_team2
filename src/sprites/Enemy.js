@@ -3,9 +3,12 @@ import Sprite from '../services/Sprite';
 import Text from '../services/Text';
 
 export default class Enemy extends Sprite {
-  constructor (x, y, speed, health, name, isBoss) {
-    super({asset: name, frame: 0, anchorY: 1});
 
+  constructor (x, y, speed, health, name, hitsound, deathsound, isBoss) {
+    super({asset: name, frame: 0});
+
+    this.hitSound = hitsound;
+    this.deathSound = deathsound;
     this.isBoss = isBoss;
     this.x = x;
     this.y = y;
@@ -50,6 +53,7 @@ export default class Enemy extends Sprite {
 
   doDamage (damage) {
     this.hp -= damage;
+    game.sound.play(this.hitSound, 70, false);
     this.updateHPBar();
     if (this.hp <= 0) {
       game.updateScore.dispatch(this.points);
@@ -62,6 +66,7 @@ export default class Enemy extends Sprite {
     game.removeEnemy.dispatch(this);
     this.tween = game.add.tween(this).to({ alpha: 0 }, 1000, null, true);
     this.tween.onComplete.add(() => {
+      game.sound.play(this.deathSound, 70, false);
       this.destroy();
     });
   }
@@ -83,7 +88,7 @@ export default class Enemy extends Sprite {
     if (!this.isBoss) {
       this.barBackground.scale.setTo(0.5, 1);
     }
-    this.barBackground.y = -this.height - 20;
+    this.barBackground.y = -this.height / 2 - 20;
 
     this.addChild(this.barBackground);
 
@@ -96,7 +101,7 @@ export default class Enemy extends Sprite {
     }
     this.initBarWidth = this.bar.width;
 
-    this.bar.y = -this.height - 20;
+    this.bar.y = -this.height / 2 - 20;
 
     this.bar.x = -this.bar.width / 2;
     this.addChild(this.bar);
