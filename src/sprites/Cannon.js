@@ -141,7 +141,7 @@ export default class Cannon extends Phaser.Group {
       let array = ['shot1', 'shot2', 'shot3'];
       let randomShot = array[Math.floor(Math.random() * array.length)];
       console.log(randomShot);
-      game.sound.play(randomShot, 20, false);
+      game.sound.play(randomShot, 1, false);
 
       const bullet = new Bullet(this.cannon.position.x + this.x, this.cannon.position.y + this.y, this.cannon.rotation, this.speed, this.power);
       game.bullets.add(bullet);
