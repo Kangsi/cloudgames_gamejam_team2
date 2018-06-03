@@ -86,8 +86,8 @@
     "boss": {
       "asset": "cyclops_boss",
       "moveSound": "cyclops_move",
-      "hitSound": "cyclops_move",
-      "deathSound": "cyclops_move",
+      "hitSound": "cyclops_hit",
+      "deathSound": "cyclops_death",
       "initMinSpeed": 1,
       "initMaxSpeed": 1.5,
       "initHealth": 400
@@ -96,8 +96,8 @@
       "demon1": {
         "asset": "cyclops",
         "moveSound": "cyclops_move",
-        "hitSound": "cyclops_move",
-        "deathSound": "cyclops_move",
+        "hitSound": "cyclops_hit",
+        "deathSound": "cyclops_death",
         "initMinSpeed": 1,
         "initMaxSpeed": 1.2,
         "initHealth": 70
@@ -105,8 +105,8 @@
       "demon2": {
         "asset": "cyclops",
         "moveSound": "cyclops_move",
-        "hitSound": "cyclops_move",
-        "deathSound": "cyclops_move",
+        "hitSound": "cyclops_hit",
+        "deathSound": "cyclops_death",
         "initMinSpeed": 5,
         "initMaxSpeed": 5,
         "initHealth": 10
@@ -120,13 +120,12 @@
     "amount": 40,
     "bg1": "background1",
     "bg2": "wall1",
-    "music1": "cyclops_bgsound",
-
+    "music1": "final_bgsound",
     "boss": {
       "asset": "final_boss",
-      "moveSound": "slime_move",
-      "hitSound": "slime_move",
-      "deathSound": "slime_move",
+      "moveSound": "demon_move",
+      "hitSound": "slime_hit",
+      "deathSound": "cyclops_death",
       "initMinSpeed": 0.5,
       "initMaxSpeed": 0.5,
       "initHealth": 2000
@@ -143,18 +142,18 @@
       },
       "demon2": {
         "asset": "cyclops",
-        "moveSound": "slime_move",
-        "hitSound": "slime_move",
-        "deathSound": "slime_move",
+        "moveSound": "cyclops_move",
+        "hitSound": "cyclops_move",
+        "deathSound": "cyclops_move",
         "initMinSpeed": 1,
         "initMaxSpeed": 1,
         "initHealth": 40
       },
       "demon3": {
         "asset": "demon1",
-        "moveSound": "slime_move",
-        "hitSound": "slime_hit",
-        "deathSound": "slime_death",
+        "moveSound": "demon_move",
+        "hitSound": "demon_hit",
+        "deathSound": "demon_death",
         "initMinSpeed": 2,
         "initMaxSpeed": 2,
         "initHealth": 15
