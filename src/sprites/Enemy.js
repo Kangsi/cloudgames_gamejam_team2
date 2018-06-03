@@ -53,15 +53,18 @@ export default class Enemy extends Sprite {
 
   doDamage (damage) {
     this.hp -= damage;
+
     this.updateHPBar();
     if (this.hp <= 0) {
-      game.sound.play(this.hitSound, 1, false);
 
       game.updateScore.dispatch(this.points);
       this.doDeathAnimation();
       this.kill();
-    } else {
       game.sound.play(this.deathSound, 1, false);
+
+    } else {
+      game.sound.play(this.hitSound, 1, false);
+
     }
   }
 
