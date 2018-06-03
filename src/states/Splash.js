@@ -67,18 +67,36 @@ export default class extends Phaser.State {
 
     this.load.image('corner_display', 'assets/images/corner_display.png');
 
-
     this.load.image('button_audio', 'assets/images/button_audio.png');
     this.load.image('button_mute', 'assets/images/button_mute.png');
+
+    // sounds
     this.load.audio('home', 'assets/audio/Menu/menuMusic.mp3');
-    // slime sounds suckah
+    // stage 1 + slime sounds
+    this.load.audio('slime_bgsound', 'assets/audio/Stages/stage1.mp3');
     this.load.audio('slime_move', 'assets/audio/Enemy/Slimes/slimeMovement.mp3');
     this.load.audio('slime_hit', 'assets/audio/Enemy/Slimes/slimeHit.mp3');
     this.load.audio('slime_death', 'assets/audio/Enemy/Slimes/slimeDeath.mp3');
-    // demon sounds
+    // stage 2 + demon sounds
+    this.load.audio('demon_bgsound', 'assets/audio/Stages/stage2.mp3');
     this.load.audio('demon_move', 'assets/audio/Enemy/Demon/demonMovement.mp3');
     this.load.audio('demon_hit', 'assets/audio/Enemy/Demon/demonDamage.mp3');
-    this.load.audio('demon_death', 'assets/audio/Enemy/Demon/DemonDying.mp3');
+    this.load.audio('demon_death', 'assets/audio/Enemy/Demon/demonDying.mp3');
+    // stage 3 + cyclops sounds
+    this.load.audio('cyclops_bgsound', 'assets/audio/Stages/stage3.mp3');
+    this.load.audio('cyclops_move', 'assets/audio/Enemy/Cyclops/cyclopsMovement.mp3');
+    this.load.audio('cyclops_hit', 'assets/audio/Enemy/Cyclops/cyclopsDamage.mp3');
+    this.load.audio('cyclops_death', 'assets/audio/Enemy/Cyclops/cyclopsDying.mp3');
+    // stage 4 + Boss sounds
+    this.load.audio('slime_bgsound', 'assets/audio/Stages/stage1.mp3');
+    this.load.audio('slime_boss', 'assets/audio/Enemy/Boss/bossSlime.mp3');
+    this.load.audio('demon_boss', 'assets/audio/Enemy/Boss/bossDemon.mp3');
+    this.load.audio('cyclops_boss', 'assets/audio/Enemy/Boss/bossCyclops.mp3');
+    // Shooting sounds + game over
+    this.load.audio('gameover', 'assets/audio/Cannon/gameover.mp3');
+    this.load.audio('shot1', 'assets/audio/Cannon/shooting.mp3');
+    this.load.audio('shot2', 'assets/audio/Cannon/shooting2.mp3');
+    this.load.audio('shot3', 'assets/audio/Cannon/shooting3.mp3');
   }
 
   fileComplete (progress, cacheKey, success, totalLoaded, totalFiles) {

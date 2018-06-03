@@ -7,10 +7,10 @@ export default class Levels {
 
     this.amount = 10;
     this.level = 1;
-
     this.levelInfo = game.cache.getJSON('level');
     this.levelInfoIndex = 0;
     this.currentLevelInfo = this.levelInfo[this.levelInfoIndex];
+    game.sound.play(this.currentLevelInfo.music1);
     // this.addLevel();
   }
 
@@ -55,6 +55,8 @@ export default class Levels {
     game.camera.fade(0x000000, 500, true);
     game.time.events.add(1000, () => {
       game.changeBackground.dispatch(this.currentLevelInfo.bg1, this.currentLevelInfo.bg2);
+      game.sound.removeByKey(this.currentLevelInfo.music1);
+      game.sound.play(this.currentLevelInfo.music2);
       game.camera.flash(0x000000, 500);
     }, this);
   }
