@@ -3,9 +3,11 @@ import Sprite from '../services/Sprite';
 import Text from '../services/Text';
 
 export default class Enemy extends Sprite {
-  constructor (x, y, speed, health, name) {
+  constructor (x, y, speed, health, name, hitsound, deathsound) {
     super({asset: name, frame: 0});
 
+    this.hitSound = hitsound;
+    this.deathSound = deathsound;
 
     this.x = x;
     this.y = y;
@@ -41,6 +43,7 @@ export default class Enemy extends Sprite {
 
   doDamage (damage) {
     this.hp -= damage;
+    game.sound.play(this.hitSound, 70, false);
     this.updateHPBar();
     if (this.hp <= 0) {
       this.kill();
@@ -51,18 +54,9 @@ export default class Enemy extends Sprite {
     game.removeEnemy.dispatch(this);
     this.tween = game.add.tween(this).to({ alpha: 0 }, 1000, null, true);
     this.tween.onComplete.add(() => {
+      game.sound.play(this.deathSound, 70, false);
       this.destroy();
     });
-  }
-
-  deathCheck () {
-    let count = 3;
-    console.log('Counter: ' + count);
-    if (count <= 0) {
-      count--;
-    } else {
-      this.gameOver();
-    }
   }
 
   buildHPBar () {
