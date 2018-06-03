@@ -9,6 +9,7 @@ import PowerUps from '../sprites/PowerUps';
 import EndScreen from '../sprites/EndScreen';
 import Score from '../sprites/Score';
 import Wave from '../sprites/Wave';
+import PauseButton from '../sprites/PauseButton'
 
 import PowerUpSpawner from '../services/PowerUpSpawner';
 
@@ -67,7 +68,8 @@ export default class extends Phaser.State {
     // this.game.add.existing(this.ammo);
     this.score = new Score();
     this.wave = new Wave();
-
+    this.pauseButton = new PauseButton();
+    game.add.existing(this.pauseButton);
     this.endScreen = new EndScreen();
   }
 

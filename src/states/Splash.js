@@ -49,6 +49,8 @@ export default class extends Phaser.State {
 
     this.load.spritesheet('final_boss', 'assets/images/final_boss.png', 650, 600, 18);
 
+    this.load.image('button_pause', 'assets/images/button_pause.png');
+
     this.load.image('cannon_base1', 'assets/images/cannon_base1.png');
     this.load.image('cannon_base2', 'assets/images/cannon_base2.png');
     this.load.image('cannon_base3', 'assets/images/cannon_base3.png');
