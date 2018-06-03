@@ -12,7 +12,6 @@ import config from './config';
 class Game extends Phaser.Game {
   constructor () {
     super(config);
-    console.log('test');
     this.state.add('Splash', SplashState, false);
     this.state.add('Game', GameState, false);
     this.state.add('Home', Home, true);

@@ -30,15 +30,12 @@ export default class Levels {
 
     // this.minSpeed *= 1.05;
     // this.maxSpeed *= 1.05;
-
-    console.log('level up boiii! you are now at: ' + this.level);
   }
 
   getCorrectLevelInfo () {
     if (!this.levelInfo[this.levelInfoIndex + 1]) {
       this.destroyBGM()
-      console.warn('no more levels');
-      console.log(this.levelInfo.bossLevel + 1, this.level);
+
       if (this.currentLevelInfo.bossLevel + 1 === this.level) {
         this.multiplier += 2;
         this.nLevel += this.level;

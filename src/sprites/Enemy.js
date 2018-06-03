@@ -3,9 +3,9 @@ import Sprite from '../services/Sprite';
 import Text from '../services/Text';
 
 export default class Enemy extends Sprite {
-
   constructor (x, y, speed, health, name, hitsound, deathsound, isBoss) {
     super({asset: name, frame: 0});
+
 
     this.hitSound = hitsound;
     this.deathSound = deathsound;
@@ -56,15 +56,12 @@ export default class Enemy extends Sprite {
 
     this.updateHPBar();
     if (this.hp <= 0) {
-
       game.updateScore.dispatch(this.points);
       this.doDeathAnimation();
       this.kill();
-      game.sound.play(this.deathSound, 1, false);
-
+      game.sound.play(this.deathSound, 0.2, false);
     } else {
-      game.sound.play(this.hitSound, 1, false);
-
+      game.sound.play(this.hitSound, 0.2, false);
     }
   }
 
@@ -101,6 +98,7 @@ export default class Enemy extends Sprite {
       asset: 'healthbar_green',
       anchorX: 0,
     });
+
     if (!this.isBoss) {
       this.bar.scale.setTo(0.5, 1);
     }
