@@ -50,7 +50,7 @@ export default class EnemyGenerate extends Phaser.Group {
       game.enemies.add(tempEnemy);
       this.enemies.push(tempEnemy);
     }
-    //game.sound.play(this.sound, 5, true);
+    game.sound.play(this.sound, 1, true);
   }
 
   spawnBoss () {
