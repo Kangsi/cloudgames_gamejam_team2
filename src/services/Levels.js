@@ -40,7 +40,7 @@ export default class Levels {
       console.warn('no more levels');
       console.log(this.levelInfo.bossLevel + 1, this.level);
       if (this.currentLevelInfo.bossLevel + 1 === this.level) {
-        this.multiplier += 1;
+        this.multiplier += 2;
         this.nLevel += this.level;
         this.level = 1;
         this.levelInfoIndex = 0;
