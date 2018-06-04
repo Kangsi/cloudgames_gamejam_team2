@@ -92,7 +92,7 @@ export default class extends Phaser.State {
     this.load.audio('cyclops_hit', 'assets/audio/enemy/cyclops/cyclops_damage.mp3');
     this.load.audio('cyclops_death', 'assets/audio/enemy/cyclops/cyclops_dying.mp3');
     // stage 4 + boss sounds
-    this.load.audio('slime_bgsound', 'assets/audio/stage/stage1.mp3');
+    this.load.audio('final_bgsound', 'assets/audio/stage/stage4.mp3');
     this.load.audio('slime_boss', 'assets/audio/enemy/boss/boss_slime.mp3');
     this.load.audio('demon_boss', 'assets/audio/enemy/boss/boss_demon.mp3');
     this.load.audio('cyclops_boss', 'assets/audio/enemy/boss/boss_cyclops.mp3');

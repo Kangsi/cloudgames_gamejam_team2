@@ -92,6 +92,7 @@ export default class Enemy extends Sprite {
     }
     this.barBackground.y = -this.height / 2 - 20;
 
+
     this.addChild(this.barBackground);
 
     this.bar = new Sprite({

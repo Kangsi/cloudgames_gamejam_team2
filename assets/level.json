@@ -120,13 +120,12 @@
     "amount": 40,
     "bg1": "background1",
     "bg2": "wall1",
-    "music1": "cyclops_bgsound",
-
+    "music1": "final_bgsound",
     "boss": {
       "asset": "final_boss",
       "moveSound": "demon_move",
-      "hitSound": "demon_hit",
-      "deathSound": "demon_death",
+      "hitSound": "slime_hit",
+      "deathSound": "cyclops_death",
       "initMinSpeed": 0.5,
       "initMaxSpeed": 0.5,
       "initHealth": 2000
@@ -152,9 +151,9 @@
       },
       "demon3": {
         "asset": "demon1",
-        "moveSound": "cyclops_move",
-        "hitSound": "cyclops_hit",
-        "deathSound": "cyclops_death",
+        "moveSound": "demon_move",
+        "hitSound": "demon_hit",
+        "deathSound": "demon_death",
         "initMinSpeed": 2,
         "initMaxSpeed": 2,
         "initHealth": 15

@@ -111,17 +111,16 @@ export default class Cannon extends Phaser.Group {
     this.character.loadTexture(`character_${value}`);
   }
 
-  update () {
+    update () {
     if (this.gameOver) {
       return;
     }
 
     if (game.input.activePointer.isDown && this.hitbox.input.checkPointerOver(game.input.activePointer)) {
       this.rotateCannon();
+      this.shoot();
     }
-    if (this.spacebar.justPressed()) {
-      this.reload(5);
-    }
+
   }
 
   rotateCannon () {
@@ -140,7 +139,7 @@ export default class Cannon extends Phaser.Group {
     game.time.events.add(150, () => {
       let array = ['shot1', 'shot2', 'shot3'];
       let randomShot = array[Math.floor(Math.random() * array.length)];
-      game.sound.play(randomShot, 0.2, false);
+      game.sound.play(randomShot, 1, false);
 
       const bullet = new Bullet(this.cannon.position.x + this.x, this.cannon.position.y + this.y, this.cannon.rotation, this.speed, this.power);
       game.bullets.add(bullet);
